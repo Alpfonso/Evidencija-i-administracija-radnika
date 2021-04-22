@@ -26,5 +26,53 @@ public class Ticket {
 		this.rijesio = zatvorio;
 		this.rijesen = true;
 	}
+
+	public Radnik getPrijavio() {
+		return prijavio;
+	}
+
+	public void setPrijavio(Radnik prijavio) {
+		this.prijavio = prijavio;
+	}
+
+	public String getOpis() {
+		return opis;
+	}
+
+	public void setOpis(String opis) {
+		this.opis = opis;
+	}
+
+	public Zadaci getZadatak() {
+		return zadatak;
+	}
+
+	public void setZadatak(Zadaci zadatak) {
+		this.zadatak = zadatak;
+	}
+
+	public Date getDatum() {
+		return datum;
+	}
+
+	public void setDatum(Date datum) {
+		this.datum = datum;
+	}
+
+	public boolean isRijesen() {
+		return rijesen;
+	}
+
+	public void setRijesen(boolean rijesen) {
+		this.rijesen = rijesen;
+	}
+
+	public Radnik getRijesio() {
+		return rijesio;
+	}
+
+	public void setRijesio(Radnik rijesio) {
+		this.rijesio = rijesio;
+	}
 	
 }

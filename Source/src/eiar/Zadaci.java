@@ -18,4 +18,28 @@ public class Zadaci {
 		
 		return status;
 	}
+	public String getIme() {
+		return ime;
+	}
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+	public Radnik getZadano_radniku() {
+		return zadano_radniku;
+	}
+	public void setZadano_radniku(Radnik zadano_radniku) {
+		this.zadano_radniku = zadano_radniku;
+	}
+	public Projekt getProjekt() {
+		return projekt;
+	}
+	public void setProjekt(Projekt projekt) {
+		this.projekt = projekt;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 }
