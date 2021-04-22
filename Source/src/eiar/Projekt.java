@@ -9,6 +9,7 @@ public class Projekt {
 	private Date datum_pocetak;
 	private Date datum_kraj;
 	private boolean status;
+	private String izvjesce = new String("Empty");
 	
 	public Projekt(String ime, Nadredeni nadredeni_radnik, Date datum_pocetak, Date datum_kraj) {
 		// konstrukor projekta
@@ -19,18 +20,18 @@ public class Projekt {
 	}
 	
 	public boolean Status() {
-		// vraca status projekta
+		// vraca bool status projekta
 		return status;
 	}
 	
-	public String Zatvori_projekt() {
+	public boolean Zatvori_projekt() {
 		// Zatvaramo projekt ukoliko jos nije zatvoren
 		if(status) {
 			status = false;
-			return "Projekt " + id + " zatvoren!";
+			return true;
 		}
 		else {
-			return "Projekt " + id + " je vec zatvoren!";
+			return false;
 		}
 	}
 	
@@ -41,4 +42,37 @@ public class Projekt {
 		}
 		return null;
 	}
+	
+	public boolean Promjeni_datum(Date novi_pocetak, Date novi_kraj) {
+		// Promjena datuma pocetka I kraja
+		if(novi_pocetak.after(novi_kraj)) {
+			return false;
+		}
+		this.datum_pocetak = novi_pocetak;
+		this.datum_kraj = novi_kraj;
+		
+		return true;
+	}
+	
+	public boolean Promjeni_datum(Date novi_datum, boolean provjera) {
+		// Promjena datuma pocetka ILI kraja
+		if(provjera) {
+			this.datum_kraj = novi_datum;
+		}
+		else {
+			this.datum_pocetak = novi_datum;
+		}
+		return true;
+	}
+	
+	public String getIzvjesce() {
+		return izvjesce;
+	}
+
+	public void setIzvjesce(String izvjesce) {
+		this.izvjesce = izvjesce;
+	}
+	
 }
+
+	
