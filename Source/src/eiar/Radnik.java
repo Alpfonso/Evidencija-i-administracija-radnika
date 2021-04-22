@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class Radnik {
 
+	private int id;
 	private String ime;
 	private String prezime;
 	private Date datum_rodenja;
@@ -19,6 +20,7 @@ public class Radnik {
 	private int slobodni_dani;
 	
 	public Radnik (String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele, String obrazovanje, String razina_ovlasti, Date r_v_p, Date r_v_k, int s_d) {
+		//TO-DO id radnika
 		this.ime = ime;
 		this.prezime = prez;
 		this.datum_rodenja = dat;
@@ -33,5 +35,9 @@ public class Radnik {
 		this.radno_vrijeme_kraj = r_v_k;
 		this.slobodni_dani = s_d;
 		}
+
+	public int getId() {
+		return id;
+	}
 	
 }
