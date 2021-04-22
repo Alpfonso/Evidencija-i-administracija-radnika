@@ -11,6 +11,20 @@ public class Podredeni extends Radnik {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public void napisi_izvjesce (String izvjesce, Zadaci zadatak) {
+		
+		zadatak.setIzvjesce(izvjesce);
+	}
+	
+	public String pregledaj_izvjesce (String izvjesce, Zadaci zadatak) {
+		
+		return zadatak.getIzvjesce();
+	}
+	
+	public void zavrsi_zadatak (Zadaci zadatak) {
+		
+		zadatak.isStatus();
+	}
 	
 	public int provjera_zadataka() {
 		
@@ -18,5 +32,7 @@ public class Podredeni extends Radnik {
 		
 		return this.getId();
 	}
+	
+	
 
 }

@@ -19,6 +19,7 @@ public class Zadaci {
 		
 		return status;
 	}
+
 	public String getIme() {
 		return ime;
 	}
@@ -37,10 +38,13 @@ public class Zadaci {
 	public void setProjekt(Projekt projekt) {
 		this.projekt = projekt;
 	}
-	public boolean isStatus() {
-		return status;
+
+	public String getIzvjesce() {
+		return izvjesce;
 	}
-	public void setStatus(boolean status) {
-		this.status = status;
+	public void setIzvjesce(String izvjesce) {
+		this.izvjesce = izvjesce;
 	}
+	
+
 }
