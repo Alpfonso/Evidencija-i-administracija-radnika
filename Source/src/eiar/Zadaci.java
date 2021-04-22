@@ -6,6 +6,7 @@ public class Zadaci {
 	private Radnik zadano_radniku;
 	private Projekt projekt;
 	private boolean status;
+	private String izvjesce;
 	
 	public Zadaci(Radnik radnik, Projekt projekt, String ime) {
 		this.zadano_radniku = radnik;
