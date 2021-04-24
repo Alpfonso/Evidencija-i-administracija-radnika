@@ -38,13 +38,19 @@ public class Zadaci {
 	public void setProjekt(Projekt projekt) {
 		this.projekt = projekt;
 	}
-
 	public String getIzvjesce() {
 		return izvjesce;
 	}
 	public void setIzvjesce(String izvjesce) {
 		this.izvjesce = izvjesce;
 	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
 	
 
 }
