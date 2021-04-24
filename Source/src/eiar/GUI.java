@@ -21,6 +21,12 @@ public class GUI {
 	    //Display the window.
 	    okvir.pack();
 	    okvir.setVisible(true);
+	    JButton osvjezi = new JButton("Osvježi");
+	    //osvjezi.setBounds(130,100,100, 40);
+	    osvjezi.setSize(100, 50);          
+	    okvir.add(osvjezi);
+	              
+	    okvir.setSize(1000,1000);
 	    
 	}
 	
