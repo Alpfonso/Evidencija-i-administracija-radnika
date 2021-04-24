@@ -7,7 +7,10 @@ import javax.swing.*;
 
 public class GUI {
 	JFrame okvir = new JFrame("EIAR");
-	public GUI() {  
+	public GUI() { 
+		
+	}
+	public static void basic_display() {  
 		JFrame okvir = new JFrame("EIAR");
 	    okvir.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    
@@ -18,5 +21,7 @@ public class GUI {
 	    //Display the window.
 	    okvir.pack();
 	    okvir.setVisible(true);
+	    
 	}
+	
 }
