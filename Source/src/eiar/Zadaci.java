@@ -15,9 +15,26 @@ public class Zadaci {
 		this.status = false;
 		//TODO add data to database and get auto increment id
 	}
+	public Zadaci(Projekt projekt) {
+		this.projekt = projekt;
+	}
+	public Zadaci(Projekt projekt, String opis) {
+		this.projekt = projekt;
+		this.ime = opis;
+	}
+	
+	public void dodaj_radnika(Radnik radnik) {
+		this.zadano_radniku = radnik;
+	}
+	public void dodaj_opis(String opis) {
+		this.ime = opis;
+	}
 	public boolean pregled_statusa() {
 		
 		return status;
+	}
+	public void zavrsi() {
+		this.status = false;
 	}
 
 	public String getIme() {
