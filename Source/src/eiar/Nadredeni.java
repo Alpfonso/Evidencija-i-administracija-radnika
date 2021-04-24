@@ -2,7 +2,7 @@ package eiar;
 
 import java.util.Date;
 
-public class Nadredeni extends Radnik {
+public class Nadredeni extends Radnik implements Postavi_radnika {
 
 	public Nadredeni(String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele,
 			String obrazovanje, String razina_ovlasti, Date r_v_p, Date r_v_k, int s_d) {
@@ -22,6 +22,13 @@ public class Nadredeni extends Radnik {
 	
 	public void Zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) {
 		Zadaci zadatak = new Zadaci(radnik, projekt, ime_zadatka);
+	}
+
+	@Override
+	public void postavi_radnika(Radnik radnik_dodjeljen, Zadaci zadatak) {
+		
+		zadatak.dodaj_radnika(radnik_dodjeljen);
+		
 	}
 	
 }
