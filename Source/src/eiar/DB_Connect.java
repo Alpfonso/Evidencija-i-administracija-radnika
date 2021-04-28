@@ -4,9 +4,17 @@ import java.sql.*;
 import java.time.LocalDate;
 
 public class DB_Connect {
-	public DB_Connect() {
-		// TODO Auto-generated constructor stub
-	}
+    private Connection connect() {
+        // SQLite connection string
+        String url = "jdbc:sqlite:../Database/EIAR_DB.db";
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url);
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return conn;
+    }
 	public void Create_User(String ime, String prezime, LocalDate datum_rodenja, String grad_stanovanja, String ulica_i_broj, String email, String OIB, 
 			String telefon, String obrazovanje, Time radno_vrijeme_start, Time radno_vrijeme_end, String razina_ovlasti){
 	      	Connection con = null;
@@ -25,7 +33,7 @@ public class DB_Connect {
 	      				+ " 'OIB', 'telefon', 'obrazovanje', 'razina_ovlasti', 'radno_vrijeme_start', 'radno_vrijeme_end') VALUES "
 	      				+ "('" + ime + "','" + prezime + "','" + datum_rodenja + "','" + grad_stanovanja + "','" + ulica_i_broj + "','" + email
 	      				+ "','" + OIB + "','" + telefon + "','" + obrazovanje + "','" + razina_ovlasti + "','" + radno_vrijeme_start + "','" + 
-	      				radno_vrijeme_end + "')"; 
+	      				radno_vrijeme_end + "')";
 	      		stmt.executeUpdate(sql);
 	      		stmt.close();
 	            con.commit();
@@ -35,5 +43,21 @@ public class DB_Connect {
 	      		System.exit(0);
 	      	}
 	      	System.out.println("User record created");
+	}
+	
+	public ResultSet Fetch_Table_Data(String table_name, int data_id){
+		String sql = "SELECT * FROM '" + table_name + "' WHERE id = '" + data_id + "'";
+		Connection conn = this.connect();
+		Statement stmt;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		return rs;
 	}
 }
