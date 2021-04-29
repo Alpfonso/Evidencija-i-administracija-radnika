@@ -9,5 +9,12 @@ public class Vlasnik extends Radnik {
         super(ime, prez, dat, g_s, u_s, email, OIB, tele, obrazovanje, razina_ovlasti, r_v_p, r_v_k, s_d);
         // TODO Auto-generated constructor stub
     }
+	
+	public String Dohvati_izvjesce (Projekt projekt) {
+		
+		return projekt.getIzvjesce();
+	}
+	
+	
 
 }

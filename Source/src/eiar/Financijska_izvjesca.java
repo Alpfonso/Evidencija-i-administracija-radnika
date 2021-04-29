@@ -25,4 +25,5 @@ public class Financijska_izvjesca extends Alati {
 	public void Promjeni_opis(String novi_opis_izvjesca) {
 		this.setOpis(novi_opis_izvjesca);
 	}
+	
 }

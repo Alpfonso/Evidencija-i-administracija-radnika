@@ -9,5 +9,9 @@ public class Administracija extends Radnik {
 		super(ime, prez, dat, g_s, u_s, email, OIB, tele, obrazovanje, razina_ovlasti, r_v_p, r_v_k, s_d);
 		// TODO Auto-generated constructor stub
 	}
+
+	public void Postavi_nadredenog (Radnik radnik, String razina_ovlasti) {
+		// TODO change authority status within database
+	}
 	
 }
