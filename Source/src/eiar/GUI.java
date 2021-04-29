@@ -25,7 +25,7 @@ public class GUI /*implements ActionListener*/{
 	 */
 	public GUI() throws SQLException{
 		DB_Connect db_object = new DB_Connect();
-		ResultSet rs = db_object.Fetch_Table_Data("zaposlenici", 7);
+		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 7);
 		
 		while (rs.next()) {
 			ime = rs.getString("ime") + " " + rs.getString("prezime");
