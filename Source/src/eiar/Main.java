@@ -6,7 +6,7 @@ public class Main {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws SQLException {
-		GUI.basic_display();
+		GUI prozor = new GUI();
 		
 		DB_Connect db_object = new DB_Connect();
 		LocalDate birth = LocalDate.of(1999, 4, 14);
