@@ -38,7 +38,7 @@ public class Main {
 		arr[4] = new String("515380085");
 		
 		//db_object.Update_table_data(str, arr, "zaposlenici", 11);
-		db_object.Insert_table_data(str, arr, "zaposlenici", 11);
+		//db_object.Insert_table_data(str, arr, "zaposlenici", 11);
 		
 		/*ResultSet rs_del = db_object.Delete_table_data("zaposlenici", 10);
 		while (rs_del.next()) {
