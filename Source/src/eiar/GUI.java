@@ -15,28 +15,22 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 
-public class GUI /*implements ActionListener*/{
+public class GUI /*TODO implements ActionListener*/{ //basic gui implementation
 
 	private JFrame frame;
 	private String ime = new String();
-	
-	/**
-	 * Create the application.
-	 */
+
 	public GUI() throws SQLException{
 		DB_Connect db_object = new DB_Connect();
-		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 7);
+		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 7);//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
 		
 		while (rs.next()) {
-			ime = rs.getString("ime") + " " + rs.getString("prezime");
+			ime = rs.getString("ime") + " " + rs.getString("prezime");// fetches basic data from db to display
 		}
 		initialize();
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
+	private void initialize() {//basic frame and components, subject to change
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -84,4 +78,5 @@ public class GUI /*implements ActionListener*/{
 		
 		frame.setVisible(true);
 	}
+	//TODO implement onClick functions
 }

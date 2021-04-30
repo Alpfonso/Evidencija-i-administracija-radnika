@@ -2,7 +2,7 @@ package eiar;
 
 import java.util.Date;
 
-public class Radnik {
+public class Radnik {//basic class for all worker objects
 
 	private int id;
 	private String ime;
@@ -20,7 +20,7 @@ public class Radnik {
 	private int slobodni_dani;
 	
 	public Radnik (String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele, String obrazovanje, String razina_ovlasti, Date r_v_p, Date r_v_k, int s_d) {
-		//TO-DO id radnika
+		//TO-DO get id_radnika from db
 		this.ime = ime;
 		this.prezime = prez;
 		this.datum_rodenja = dat;
@@ -35,7 +35,7 @@ public class Radnik {
 		this.radno_vrijeme_kraj = r_v_k;
 		this.slobodni_dani = s_d;
 		}
-
+	//TODO implement needed methods
 	public int getId() {
 		return id;
 	}
