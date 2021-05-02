@@ -2,6 +2,11 @@ package eiar;
 
 import java.util.Date;
 
+/**
+ * Maintenance branch<br>
+ * 
+ * WIP - most likely able to access database directly
+ */
 public class Odrzavanje extends Radnik {
 	
 	public Odrzavanje(String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele,

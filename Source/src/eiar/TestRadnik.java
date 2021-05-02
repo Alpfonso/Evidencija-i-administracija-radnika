@@ -14,7 +14,7 @@ public class TestRadnik {
 		Date rvp = new Date();
 		Date rvk = new Date();
 		Radnik r1 = new Radnik("Mateo","Mateov",date,"Zagreb","Zagrebacka ulica","MateoMateov@gmail.com",87654321,"0911237894","Riteh","Radnik",rvp,rvk,3);
-		assertEquals(87654321,r1.getId);
+		assertEquals(87654321,r1.getId());
 	}
 
 }

@@ -1,7 +1,10 @@
 package eiar;
 
 import java.util.Date;
-
+/**
+ * Human resources
+ * <br>Conducts surveys
+ */
 public class HR extends Odrzavanje {
 
 	public HR(String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele,

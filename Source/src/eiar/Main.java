@@ -1,7 +1,9 @@
 package eiar;
 import java.sql.*;
 import java.time.LocalDate;
-
+/**
+ * <b>Currently used mostly for testing</b>
+ */
 public class Main {
 
 	@SuppressWarnings("deprecation")

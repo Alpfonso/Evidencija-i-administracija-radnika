@@ -1,5 +1,7 @@
 package eiar;
-
+/**
+ * Tasks class
+ */
 public class Zadaci {
 	private int id;
 	private String ime = new String();
@@ -7,7 +9,12 @@ public class Zadaci {
 	private Projekt projekt;
 	private boolean status;
 	private String izvjesce;
-	
+	/**
+	 * Main constructor sets worker, parent project and name
+	 * @param radnik assigned worker name
+	 * @param projekt project name who's child is the constructed task
+	 * @param ime task name
+	 */
 	public Zadaci(Radnik radnik, Projekt projekt, String ime) {
 		this.zadano_radniku = radnik;
 		this.projekt = projekt;
@@ -23,17 +30,17 @@ public class Zadaci {
 		this.ime = opis;
 	}
 	
-	public void dodaj_radnika(Radnik radnik) {
+	public void Dodaj_radnika(Radnik radnik) {
 		this.zadano_radniku = radnik;
 	}
-	public void dodaj_opis(String opis) {
+	public void Dodaj_opis(String opis) {
 		this.ime = opis;
 	}
-	public boolean pregled_statusa() {
+	public boolean Pregled_statusa() {
 		
 		return status;
 	}
-	public void zavrsi() {
+	public void Zavrsi() {
 		this.status = false;
 	}
 

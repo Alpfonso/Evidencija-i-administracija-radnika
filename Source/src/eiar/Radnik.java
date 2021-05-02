@@ -1,7 +1,11 @@
 package eiar;
 
 import java.util.Date;
-
+/**
+ * Worker superclass
+ * @author lukas
+ *
+ */
 public class Radnik {
 
 	private int id;
@@ -35,7 +39,9 @@ public class Radnik {
 		this.radno_vrijeme_kraj = r_v_k;
 		this.slobodni_dani = s_d;
 		}
-
+	/**
+	 * @return returns worker id
+	 */
 	public int getId() {
 		return id;
 	}

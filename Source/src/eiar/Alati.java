@@ -1,11 +1,18 @@
 package eiar;
 
+/** Superclass for all future tools
+ */
 public class Alati {
 
 	private String naziv;
 	private String opis;
 	private String ime_autora;
-	
+	/**
+	 * Tool constructor
+	 * @param naziv name for a tool instance (ex. "project #1 chat room")
+	 * @param opis description
+	 * @param ime_autora object creator
+	 */
 	public Alati (String naziv, String opis, String ime_autora) {
 		this.naziv = naziv;
 		this.opis = opis;

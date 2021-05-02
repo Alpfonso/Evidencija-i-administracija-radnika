@@ -2,6 +2,11 @@ package eiar;
 
 import java.util.Date;
 
+/**
+ * WIP - planed responsibility setting up superiors
+ * 
+ *
+ */
 public class Administracija extends Radnik {
 
 	public Administracija(String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB, String tele,

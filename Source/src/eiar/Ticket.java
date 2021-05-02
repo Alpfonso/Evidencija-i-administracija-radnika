@@ -1,7 +1,10 @@
 package eiar;
 
 import java.util.Date;
-
+/**
+ * Used to report issues, make suggestions etc.
+ *
+ */
 public class Ticket {
 	private int id;
 	private Radnik prijavio;
@@ -10,7 +13,13 @@ public class Ticket {
 	private Date datum = new Date();
 	private boolean rijesen;
 	private Radnik rijesio;
-	
+	/**
+	 * Ticket constructor
+	 * @param prijavio user who created the issue
+	 * @param opis description
+	 * @param zadatak which task does the issue belong to
+	 * @param datum date of creation
+	 */
 	public Ticket(Radnik prijavio, String opis, Zadaci zadatak, Date datum) {
 		this.prijavio = prijavio;
 		this.opis = opis;
@@ -18,11 +27,17 @@ public class Ticket {
 		this.datum = datum;
 		this.rijesen = false;
 	}
-	
+	/**
+	 * Issue status check
+	 * @return returns true or false depending if the issue is done
+	 */
 	public boolean Status(){
 		return rijesen;
 	}
-	
+	/**
+	 * Used to close the ticket
+	 * @param zatvorio name of the user who closed the ticket
+	 */
 	public void Zatvori_ticket(Radnik zatvorio){
 		this.rijesio = zatvorio;
 		this.rijesen = true;

@@ -1,9 +1,18 @@
 package eiar;
-
+/**
+ * Survey tool<br>
+ * Used by HR to conduct employee surveys
+ */
 public class Ankete extends Alati {
 	
 	private String sugestija;
-	
+	/**
+	 * 
+	 * @param naziv survey name
+	 * @param opis description
+	 * @param ime_autora creator name
+	 * @param sugestija suggestions written by surveyed employees
+	 */
 	public Ankete(String naziv, String opis, String ime_autora, String sugestija) {
 		super(naziv, opis, ime_autora);
 		this.sugestija = sugestija;
