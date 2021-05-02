@@ -18,7 +18,9 @@ public class TestProjekt {
 		Date datum_kraj = new Date();
 
 		Projekt p1 = new Projekt("Marko",n1,datum_pocetak,datum_kraj);
-		
+		assertTrue(p1.status());
+		assertTrue(p1.zatvori_projekt());
+		assertTrue(p1.status());
 		
 	}
 

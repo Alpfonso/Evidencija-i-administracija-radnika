@@ -19,12 +19,12 @@ public class Projekt {
 		this.datum_kraj = datum_kraj;
 	}
 	
-	public boolean Status() {
+	public boolean status() {
 		
 		return status;
 	}
 	
-	public boolean Zatvori_projekt() {
+	public boolean zatvori_projekt() {
 		//End project if it hadn't been ended yet
 		if(status) {
 			status = false;
@@ -35,7 +35,7 @@ public class Projekt {
 		}
 	}
 	
-	public Nadredeni Provjeri_nadleznog() {
+	public Nadredeni provjeri_nadleznog() {
 		//Return superior worker
 		if(nadredeni_radnik != null) {
 			return nadredeni_radnik;
@@ -43,7 +43,7 @@ public class Projekt {
 		return null;
 	}
 	
-	public boolean Promjeni_datum(Date novi_pocetak, Date novi_kraj) {
+	public boolean promjeni_datum(Date novi_pocetak, Date novi_kraj) {
 		//Change start/end date
 		if(novi_pocetak.after(novi_kraj)) {
 			return false;
@@ -54,7 +54,7 @@ public class Projekt {
 		return true;
 	}
 	
-	public boolean Promjeni_datum(Date novi_datum, boolean provjera) {
+	public boolean promjeni_datum(Date novi_datum, boolean provjera) {
 		//Change start or end date
 		if(provjera) {
 			this.datum_kraj = novi_datum;
