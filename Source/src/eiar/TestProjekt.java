@@ -25,6 +25,10 @@ public class TestProjekt {
 		assertFalse(p1.status());
 		
 		assertEquals(n1,p1.provjeri_nadleznog());
+		
+		p1.setIzvjesce("izvjesce");
+		assertEquals("izvjesce",p1.getIzvjesce());
+		
 	}
 
 }

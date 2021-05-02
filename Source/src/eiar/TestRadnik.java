@@ -14,7 +14,7 @@ public class TestRadnik {
 		Date rvp = new Date(2,3,2004);//pocetak radnog vremena
 		Date rvk = new Date(5,7,2003);//kraj radnog vremena
 		Radnik r1 = new Radnik("Mateo","Mateov",date,"Zagreb","Zagrebacka ulica","MateoMateov@gmail.com",87654321,"0911237894","Riteh","Radnik",rvp,rvk,3);
-		assertEquals(87654321,r1.getOIB());
+		assertEquals(87654321,r1.getId());
 	}
 
 }
