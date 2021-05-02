@@ -10,10 +10,12 @@ public class Ankete extends Alati {
 	}
 
 	public void Promjeni_naziv(String novi_naziv) {
+		//Method used to change poll name
 		this.setNaziv(novi_naziv);
 	}
 	
 	public void Promjeni_opis(String novi_opis) {
+		//Method used to change poll description
 		this.setOpis(novi_opis);
 	}
 }

@@ -22,6 +22,7 @@ public class Ticket {
 	public boolean Status(){
 		return rijesen;
 	}
+	
 	public void Zatvori_ticket(Radnik zatvorio){
 		this.rijesio = zatvorio;
 		this.rijesen = true;

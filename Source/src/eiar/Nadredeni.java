@@ -11,22 +11,23 @@ public class Nadredeni extends Radnik implements Postavi_radnika {
 	}
 	
 	public void Napisi_izvjesce(String izvjesce, Projekt projekt) {
-		// Napisi izvjesce projekta
+		//Write report
 		projekt.setIzvjesce(izvjesce);
 	}
 	
 	public String Izvjesce(Projekt projekt) {
-		// Metoda za dohvat izvjesca projekta
+		//Get report back
 		return projekt.getIzvjesce();
 	}
 	
 	public void Zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) {
+		//Create task
 		Zadaci zadatak = new Zadaci(radnik, projekt, ime_zadatka);
 	}
 
 	@Override
 	public void postavi_radnika(Radnik radnik_dodjeljen, Zadaci zadatak) {
-		
+		//Add worker to a task
 		zadatak.dodaj_radnika(radnik_dodjeljen);
 		
 	}

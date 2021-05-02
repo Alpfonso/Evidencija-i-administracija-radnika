@@ -20,12 +20,12 @@ public class Projekt {
 	}
 	
 	public boolean Status() {
-		// vraca bool status projekta
+		
 		return status;
 	}
 	
 	public boolean Zatvori_projekt() {
-		// Zatvaramo projekt ukoliko jos nije zatvoren
+		//End project if it hadn't been ended yet
 		if(status) {
 			status = false;
 			return true;
@@ -36,7 +36,7 @@ public class Projekt {
 	}
 	
 	public Nadredeni Provjeri_nadleznog() {
-		// Vraca nadredenog radnika
+		//Return superior worker
 		if(nadredeni_radnik != null) {
 			return nadredeni_radnik;
 		}
@@ -44,7 +44,7 @@ public class Projekt {
 	}
 	
 	public boolean Promjeni_datum(Date novi_pocetak, Date novi_kraj) {
-		// Promjena datuma pocetka I kraja
+		//Change start/end date
 		if(novi_pocetak.after(novi_kraj)) {
 			return false;
 		}
@@ -55,7 +55,7 @@ public class Projekt {
 	}
 	
 	public boolean Promjeni_datum(Date novi_datum, boolean provjera) {
-		// Promjena datuma pocetka ILI kraja
+		//Change start or end date
 		if(provjera) {
 			this.datum_kraj = novi_datum;
 		}

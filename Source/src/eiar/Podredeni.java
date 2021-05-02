@@ -12,23 +12,23 @@ public class Podredeni extends Radnik {
 	}
 	
 	public void napisi_izvjesce (String izvjesce, Zadaci zadatak) {
-		
+		//Write report
 		zadatak.setIzvjesce(izvjesce);
 	}
 	
 	public String pregledaj_izvjesce (String izvjesce, Zadaci zadatak) {
-		
+		//Check report
 		return zadatak.getIzvjesce();
 	}
 	
 	public void zavrsi_zadatak (Zadaci zadatak) {
-		
+		//End task
 		zadatak.isStatus();
 	}
 	
 	public int provjera_zadataka() {
 		
-		//vraca ID radnika
+		//Return worker ID
 		
 		return this.getId();
 	}
