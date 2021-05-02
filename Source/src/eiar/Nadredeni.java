@@ -10,17 +10,17 @@ public class Nadredeni extends Radnik implements Postavi_radnika {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public void Napisi_izvjesce(String izvjesce, Projekt projekt) {
+	public void napisi_izvjesce(String izvjesce, Projekt projekt) {
 		//Write report
 		projekt.setIzvjesce(izvjesce);
 	}
 	
-	public String Izvjesce(Projekt projekt) {
+	public String izvjesce(Projekt projekt) {
 		//Get report back
 		return projekt.getIzvjesce();
 	}
 	
-	public void Zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) {
+	public void zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) {
 		//Create task
 		Zadaci zadatak = new Zadaci(radnik, projekt, ime_zadatka);
 	}
