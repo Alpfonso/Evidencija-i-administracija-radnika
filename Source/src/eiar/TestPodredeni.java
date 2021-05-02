@@ -30,7 +30,7 @@ public class TestPodredeni {
 		
 		
 		Zadaci z1 = new Zadaci(p1,pro1,"zadatak");
-		p1.napisi_izvjesce("izvjesceee",z1)
+		p1.napisi_izvjesce("izvjesceee",z1);
 		assertEquals("izvjesceee",p1.pregledaj_izvjesce("izvjesceee",z1));
 
 		p1.zavrsi_zadatak(z1);
