@@ -16,11 +16,22 @@ public class Vlasnik extends Radnik {
 	 * @param projekt project name
 	 * @return <b>Note: </b> could be an error, should only receive report not return
 	 */
+	
 	public String Dohvati_izvjesce (Projekt projekt) {
 		
 		return projekt.getIzvjesce();
 	}
 	
+	public String Dohvati_financijsko_izvjesce (Financijska_izvjesca izvjesce) {
+		
+		return izvjesce.getIzvjesce();
+	}
 	
+	public String Dohvati_anketu (Ankete anketa) {
+		
+		return anketa.getNaziv();
+		
+		//TODO needs to return object anketa
+	}
 
 }
