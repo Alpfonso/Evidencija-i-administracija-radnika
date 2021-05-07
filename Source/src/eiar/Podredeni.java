@@ -1,7 +1,11 @@
 package eiar;
 
 import java.util.Date;
-
+/**
+ * Subordinate class
+ * 
+ *
+ */
 public class Podredeni extends Radnik {
 	
 	
@@ -10,25 +14,34 @@ public class Podredeni extends Radnik {
 		super(ime, prez, dat, g_s, u_s, email, OIB, tele, obrazovanje, razina_ovlasti, r_v_p, r_v_k, s_d);
 		// TODO Auto-generated constructor stub
 	}
-	
+	/**
+	 * Writes report for assigned task
+	 * @param izvjesce report
+	 * @param zadatak task for which report is written
+	 */
 	public void napisi_izvjesce (String izvjesce, Zadaci zadatak) {
-		
+		//Write report
 		zadatak.setIzvjesce(izvjesce);
 	}
-	
+	/**
+	 * Review written report
+	 * @param izvjesce report
+	 * @param zadatak task for which report is reviewed
+	 * @return returns String containing task report
+	 */
 	public String pregledaj_izvjesce (String izvjesce, Zadaci zadatak) {
-		
+		//Check report
 		return zadatak.getIzvjesce();
 	}
 	
 	public void zavrsi_zadatak (Zadaci zadatak) {
-		
+		//End task
 		zadatak.isStatus();
 	}
 	
 	public int provjera_zadataka() {
 		
-		//vraca ID radnika
+		//Return worker ID
 		
 		return this.getId();
 	}

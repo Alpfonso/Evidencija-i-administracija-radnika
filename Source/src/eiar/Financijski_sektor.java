@@ -1,7 +1,10 @@
 package eiar;
 
 import java.util.Date;
-
+/**
+ * Financial sector
+ * <br>Provides financial reports
+ */
 public class Financijski_sektor extends Radnik {
 
 	public Financijski_sektor(String ime, String prez, Date dat, String g_s, String u_s, String email, int OIB,

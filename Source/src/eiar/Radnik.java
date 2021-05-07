@@ -1,8 +1,17 @@
 package eiar;
 
 import java.util.Date;
+<<<<<<< HEAD
 
 public class Radnik {//basic class for all worker objects
+=======
+/**
+ * Worker superclass
+ * @author lukas
+ *
+ */
+public class Radnik {
+>>>>>>> 4ad42206dd86e6ae0e9698f73b8483033b79dfc9
 
 	private int id;
 	private String ime;
@@ -35,7 +44,13 @@ public class Radnik {//basic class for all worker objects
 		this.radno_vrijeme_kraj = r_v_k;
 		this.slobodni_dani = s_d;
 		}
+<<<<<<< HEAD
 	//TODO implement needed methods
+=======
+	/**
+	 * @return returns worker id
+	 */
+>>>>>>> 4ad42206dd86e6ae0e9698f73b8483033b79dfc9
 	public int getId() {
 		return id;
 	}
