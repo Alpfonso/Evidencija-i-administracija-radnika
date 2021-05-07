@@ -1,23 +1,14 @@
 package eiar;
-<<<<<<< HEAD
-
-public class Zadaci {//class containing all the relevant data and methods regarding tasks
-=======
 /**
  * Tasks class
  */
 public class Zadaci {
->>>>>>> 4ad42206dd86e6ae0e9698f73b8483033b79dfc9
 	private int id;
 	private String ime = new String();
 	private Radnik zadano_radniku;
 	private Projekt projekt;
 	private boolean status;
 	private String izvjesce;
-<<<<<<< HEAD
-	
-	public Zadaci(Radnik radnik, Projekt projekt, String ime) {//basic constructor
-=======
 	/**
 	 * Main constructor sets worker, parent project and name
 	 * @param radnik assigned worker name
@@ -25,7 +16,6 @@ public class Zadaci {
 	 * @param ime task name
 	 */
 	public Zadaci(Radnik radnik, Projekt projekt, String ime) {
->>>>>>> 4ad42206dd86e6ae0e9698f73b8483033b79dfc9
 		this.zadano_radniku = radnik;
 		this.projekt = projekt;
 		this.ime = ime;
@@ -40,15 +30,6 @@ public class Zadaci {
 		this.ime = opis;
 	}
 	
-<<<<<<< HEAD
-	public void dodaj_radnika(Radnik radnik) {//assign a worker to a task
-		this.zadano_radniku = radnik;
-	}
-	public void dodaj_opis(String opis) {//add description to the task
-		this.ime = opis;
-	}
-	public boolean pregled_statusa() {//miscellaneous basic methods including getters and setters
-=======
 	public void Dodaj_radnika(Radnik radnik) {
 		this.zadano_radniku = radnik;
 	}
@@ -56,7 +37,6 @@ public class Zadaci {
 		this.ime = opis;
 	}
 	public boolean Pregled_statusa() {
->>>>>>> 4ad42206dd86e6ae0e9698f73b8483033b79dfc9
 		
 		return status;
 	}
