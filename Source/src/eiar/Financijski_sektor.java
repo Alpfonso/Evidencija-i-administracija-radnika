@@ -13,9 +13,9 @@ public class Financijski_sektor extends Radnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String Dohvati_izvjesce (Projekt projekt) {
+	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String nastavak) {
 		
-		return projekt.getIzvjesce();
+		return izvjesce.getIzvjesce();
 	}
 	
 }
