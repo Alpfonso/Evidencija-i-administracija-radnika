@@ -19,4 +19,13 @@ public class Administracija extends Radnik {
 		// TODO change authority status within database
 	}
 	
+	public String Dohvati_anketu (Ankete anketa) {
+		
+		return anketa.getNaziv();
+	}
+	
+	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String format) {
+		
+		return izvjesce.getIzvjesce();
+	}
 }
