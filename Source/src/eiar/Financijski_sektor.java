@@ -1,5 +1,6 @@
 package eiar;
 
+import java.sql.ResultSet;
 import java.util.Date;
 /**
  * Financial sector
@@ -13,9 +14,20 @@ public class Financijski_sektor extends Radnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String nastavak) {
+	public String Dohvati_izvjesce () {
 		
-		return izvjesce.getIzvjesce();
+		//TO-DO fetch reports
+		
 	}
 	
+	public String Dohvati_izvjesce_po_datumu (Financijska_izvjesca izvjesce, String nastavak, Date vremenski_period) {
+		
+		DB_Connect db_object = new DB_Connect();
+		ResultSet rs = db_object.Fetch_table_data(""); //TO-DO fetch reports
+		
+		while (rs.next()) {
+			ime = rs.getString("ime") + " " + rs.getString("prezime");// fetches basic data from db to display
+		}
+		
+	}
 }

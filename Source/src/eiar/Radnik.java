@@ -1,5 +1,7 @@
 package eiar;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 
 /**
@@ -47,5 +49,13 @@ public class Radnik {
 		return id;
 	}
 	
+	
+	public ResultSet Dohvati_anketu() throws SQLException {
+		
+		DB_Connect db_object = new DB_Connect();
+		ResultSet rs = db_object.Fetch_table_data("ankete");//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
+		
+		return rs;
+	}
 	
 }
