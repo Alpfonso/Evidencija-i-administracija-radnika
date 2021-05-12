@@ -33,7 +33,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 	}
 	public GUI() throws SQLException{
 		DB_Connect db_object = new DB_Connect();
-		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 7);//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
+		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 12);//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
 		
 		while (rs.next()) {
 			ime = rs.getString("ime") + " " + rs.getString("prezime");// fetches basic data from db to display
@@ -41,7 +41,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 		initialize();
 	}
 
-	private void initialize() {//basic frame and components, subject to change
+	private void initialize() throws SQLException{//basic frame and components, subject to change
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,7 +100,15 @@ public class GUI implements ActionListener{ //basic gui implementation
 		lblPlaceholderTrenutnoPrijavljen.setBounds(10, 11, 109, 23);
 		frame.getContentPane().add(lblPlaceholderTrenutnoPrijavljen);
 		
-		JLabel lblPhTrenutniZadatak = new JLabel("ph trenutni zadatak");
+	
+		String ime_trenutnog_zadatka = new String();
+		DB_Connect db_object = new DB_Connect();
+		int id_zadatka = 1;
+		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci", id_zadatka);
+		while (trenutni_zadatak_set.next()) {
+			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
+		}
+		JLabel lblPhTrenutniZadatak = new JLabel(ime_trenutnog_zadatka);
 		lblPhTrenutniZadatak.setBounds(10, 41, 109, 23);
 		frame.getContentPane().add(lblPhTrenutniZadatak);
 		
