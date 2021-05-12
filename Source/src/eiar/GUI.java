@@ -116,6 +116,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 	}
 	public void actionPerformed(ActionEvent evt) {//Actions for each button press
 	    if (evt.getActionCommand() == Actions.RIJESEN.name()) {
+	    	
 	    	System.out.println("rijesen");
 	    } 
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
@@ -131,7 +132,8 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    else if (evt.getActionCommand() == Actions.ANKETE.name()) {
 	    }
 	    else if (evt.getActionCommand() == Actions.DODAJ_RADNIKA.name()) {
-	    	
+	    	Dodaj_radnika_GUI dr = new Dodaj_radnika_GUI();	   
+	    	dr.setVisible(true);
 	    }
 	    else if (evt.getActionCommand() == Actions.SVI_ZADACI.name()) {
 	    }

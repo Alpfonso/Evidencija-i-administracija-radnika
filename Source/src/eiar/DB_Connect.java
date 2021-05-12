@@ -90,6 +90,23 @@ public class DB_Connect {
 		return rs;
 	}
 	
+	public ResultSet Fetch_table_data(String table_name){
+		String sql = "SELECT * FROM '" + table_name;
+		Connection conn = this.connect();
+		Statement stmt;
+		ResultSet rs = null;
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	    
+		return rs;
+				
+	}
+	
 	/**
 	 * Delete data based on given parameters
 	 * @param table_name table from which the data will be deleted
