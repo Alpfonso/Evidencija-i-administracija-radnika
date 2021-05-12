@@ -29,9 +29,11 @@ public class Administracija extends Radnik {
 		db_object.Update_table_data(atributi, objekt, "zaposlenici", radnik.getId());
 	}
 	
-	public String Dohvati_anketu (Ankete anketa) {
+	public void Dohvati_anketu (int id_ankete) {
 		
-		return anketa.getNaziv();
+		DB_Connect db_object = new DB_Connect();
+		
+		db_object.Fetch_table_data("ankete", id_ankete);
 	}
 	
 	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String format) {
