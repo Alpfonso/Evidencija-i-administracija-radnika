@@ -126,6 +126,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	System.out.println("prijavi ticket");
 	    }
 	    else if (evt.getActionCommand() == Actions.DOSTUPNI_TICKETI.name()) {
+	    	
 	    }
 	    else if (evt.getActionCommand() == Actions.FIN_IZVJESCA.name()) {
 	    }
