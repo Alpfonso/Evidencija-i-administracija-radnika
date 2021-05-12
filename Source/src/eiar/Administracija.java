@@ -1,5 +1,6 @@
 package eiar;
 
+import java.sql.ResultSet;
 import java.util.Date;
 
 /**
@@ -16,12 +17,23 @@ public class Administracija extends Radnik {
 	}
 
 	public void Postavi_nadredenog (Radnik radnik, String razina_ovlasti) {
-		// TODO change authority status within database
+		
+		String[] atributi = new String[1];
+		atributi[0] = new String("razina_ovlasti");
+		
+		Object[] objekt = new Object[1];
+		objekt[0] = new String("nadredeni");
+		
+		DB_Connect db_object = new DB_Connect();
+		
+		db_object.Update_table_data(atributi, objekt, "zaposlenici", radnik.getId());
 	}
 	
-	public String Dohvati_anketu (Ankete anketa) {
+	public void Dohvati_anketu (int id_ankete) {
 		
-		return anketa.getNaziv();
+		DB_Connect db_object = new DB_Connect();
+		
+		db_object.Fetch_table_data("ankete", id_ankete);
 	}
 	
 	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String format) {
