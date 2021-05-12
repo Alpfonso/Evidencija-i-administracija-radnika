@@ -131,6 +131,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    else if (evt.getActionCommand() == Actions.ANKETE.name()) {
 	    }
 	    else if (evt.getActionCommand() == Actions.DODAJ_RADNIKA.name()) {
+	    	
 	    }
 	    else if (evt.getActionCommand() == Actions.SVI_ZADACI.name()) {
 	    }

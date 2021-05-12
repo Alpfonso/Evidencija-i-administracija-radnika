@@ -14,7 +14,7 @@ public class HR extends Administracija {
 	}
 
 	
-	public Ankete napravi_anketu (String naziv, String opis, String ime_autora, String sugestija) {
+	public Ankete Napravi_anketu (String naziv, String opis, String ime_autora, String sugestija) {
 		
 		Ankete anketa = new Ankete(naziv, opis, ime_autora, sugestija);
 	
@@ -22,8 +22,8 @@ public class HR extends Administracija {
 	}
 	
 
-	public void dohvati_anketu (Ankete anketa) {
+	public String Dohvati_anketu (Ankete anketa) {
 		
-		anketa.getNaziv();
+		return anketa.getNaziv();
 	}
 }

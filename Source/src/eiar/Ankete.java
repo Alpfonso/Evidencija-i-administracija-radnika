@@ -27,4 +27,10 @@ public class Ankete extends Alati {
 		//Method used to change poll description
 		this.setOpis(novi_opis);
 	}
+	
+	public void getAnketa () {
+		
+		
+		
+	}
 }
