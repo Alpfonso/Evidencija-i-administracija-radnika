@@ -30,7 +30,7 @@ public class Ankete extends Alati {
 	
 	public void getAnketa () {
 		
-		
+
 		
 	}
 }
