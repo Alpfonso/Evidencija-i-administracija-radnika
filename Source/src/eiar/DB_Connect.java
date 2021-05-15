@@ -28,7 +28,7 @@ public class DB_Connect {
      * @param table_name table into which the data will be inserted
      * @param data_id currently unused
      */
-	public void Insert_table_data(String[] attributes, Object[] data, String table_name, int data_id)
+	public void Insert_table_data(String[] attributes, Object[] data, String table_name)
 	{
 		StringBuilder str = new StringBuilder();
 		if(attributes.length == data.length) {	// Build INSERTION string
