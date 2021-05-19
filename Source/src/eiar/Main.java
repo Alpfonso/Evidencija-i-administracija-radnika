@@ -15,7 +15,7 @@ public class Main {
 		Time start = new Time(8,0,0);
 		Time end = new Time(12,0,0);
 		//db_object.Create_User("Dzhon", "Cena", birth , "Labin", "Ulica 9", "nesto@nesto.nesto", "988", "0988", "Neplaceni freelancer", start, end, "Vlasnik");
-		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 7);
+		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 11, "id");
 		
 		while (rs.next()) {
 		     System.out.println(rs.getInt("id") +  "\t" + 

@@ -1,4 +1,4 @@
-package eiar;
+package eiar.GUI_modules;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -14,6 +14,9 @@ import java.awt.Font;
 import javax.swing.JFormattedTextField;
 import com.toedter.calendar.JCalendar;
 import com.toedter.components.JLocaleChooser;
+
+import eiar.DB_Connect;
+
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -57,6 +60,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 				try {
 					Dodaj_radnika_GUI frame = new Dodaj_radnika_GUI();
 					frame.setVisible(true);
+					frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -245,6 +249,10 @@ public class Dodaj_radnika_GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				for(Component component : panel_2.getComponents())
 					component.setEnabled(false);
+				for(Component component : panel.getComponents())
+					component.setEnabled(false);
+				for(Component component : panel_1.getComponents())
+					component.setEnabled(false);
 				btnSubmit.setVisible(false);
 				btnPotvrdiUnos.setVisible(true);
 				btnPonisti.setVisible(true);
@@ -255,6 +263,10 @@ public class Dodaj_radnika_GUI extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				for(Component component : panel_2.getComponents())
+					component.setEnabled(true);
+				for(Component component : panel.getComponents())
+					component.setEnabled(true);
+				for(Component component : panel_1.getComponents())
 					component.setEnabled(true);
 				btnSubmit.setVisible(true);
 				btnPotvrdiUnos.setVisible(false);
@@ -282,6 +294,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 						obrazovanjeZaposlenika.getText(), start, end, 0};
 				DB_Connect conn = new DB_Connect();
 				conn.Insert_table_data(attributes, data, "zaposlenici");
+				
 			}
 		});
 		

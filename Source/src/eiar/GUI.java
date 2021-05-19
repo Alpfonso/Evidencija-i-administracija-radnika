@@ -6,6 +6,11 @@ import java.time.LocalDate;
 
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
+import javax.swing.WindowConstants;
+
+import eiar.GUI_modules.Dodaj_radnika_GUI;
+import eiar.GUI_modules.Pregled_zadataka_GUI;
+
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
@@ -33,7 +38,8 @@ public class GUI implements ActionListener{ //basic gui implementation
 	}
 	public GUI() throws SQLException{
 		DB_Connect db_object = new DB_Connect();
-		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 12);//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
+		
+		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 11, "id");//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
 		
 		while (rs.next()) {
 			ime = rs.getString("ime") + " " + rs.getString("prezime");// fetches basic data from db to display
@@ -104,7 +110,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 		String ime_trenutnog_zadatka = new String();
 		DB_Connect db_object = new DB_Connect();
 		int id_zadatka = 1;
-		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci", id_zadatka);
+		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci");
 		while (trenutni_zadatak_set.next()) {
 			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
 		}
@@ -133,10 +139,22 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    else if (evt.getActionCommand() == Actions.ANKETE.name()) {
 	    }
 	    else if (evt.getActionCommand() == Actions.DODAJ_RADNIKA.name()) {
-	    	Dodaj_radnika_GUI dr = new Dodaj_radnika_GUI();	   
+	    	Dodaj_radnika_GUI dr = new Dodaj_radnika_GUI();	
 	    	dr.setVisible(true);
+	    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	    }
 	    else if (evt.getActionCommand() == Actions.SVI_ZADACI.name()) {
+	    	Pregled_zadataka_GUI dr;
+			try {
+				System.out.println("ok");
+				dr = new Pregled_zadataka_GUI(11);	// TODO umjesto broja neka se salje id trenutno ulogiranog radnika
+				dr.setVisible(true);
+		    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}	
+	    	
 	    }
 	  }
 }

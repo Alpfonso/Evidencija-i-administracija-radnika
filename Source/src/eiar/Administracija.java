@@ -33,7 +33,7 @@ public class Administracija extends Radnik {
 		
 		DB_Connect db_object = new DB_Connect();
 		
-		db_object.Fetch_table_data("ankete", id_ankete);
+		db_object.Fetch_table_data("ankete");
 	}
 	
 	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce, String format) {

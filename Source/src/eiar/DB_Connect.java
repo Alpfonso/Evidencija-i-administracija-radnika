@@ -74,8 +74,8 @@ public class DB_Connect {
 	 * @param data_id entity which id we want to grab
 	 * @return resultset querry is returned which can then be used to access fetched data
 	 */
-	public ResultSet Fetch_table_data(String table_name, int data_id){
-		String sql = "SELECT * FROM '" + table_name + "' WHERE id = '" + data_id + "'";
+	public ResultSet Fetch_table_data(String table_name, Object data, String column){
+		String sql = "SELECT * FROM '" + table_name + "' WHERE " + column + " = '" + data + "'";
 		Connection conn = this.connect();
 		Statement stmt;
 		ResultSet rs = null;
@@ -91,7 +91,7 @@ public class DB_Connect {
 	}
 	
 	public ResultSet Fetch_table_data(String table_name){
-		String sql = "SELECT * FROM '" + table_name;
+		String sql = "SELECT * FROM '" + table_name + "'";
 		Connection conn = this.connect();
 		Statement stmt;
 		ResultSet rs = null;
