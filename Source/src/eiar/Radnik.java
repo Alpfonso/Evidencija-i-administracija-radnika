@@ -12,7 +12,7 @@ import java.util.Date;
 public class Radnik {
 
 	private int id;
-	private String ime;
+	protected String ime;
 	private String prezime;
 	private Date datum_rodenja;
 	private String grad_stanovanja;

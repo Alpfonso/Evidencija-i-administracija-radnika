@@ -1,5 +1,6 @@
 package eiar;
 
+import java.sql.ResultSet;
 import java.util.Date;
 /**
  * Firm owner
@@ -24,7 +25,7 @@ public class Vlasnik extends Radnik {
 	
 	public String Dohvati_financijsko_izvjesce (Financijska_izvjesca izvjesce) {
 		
-		return izvjesce.getIzvjesce();
+		return izvjesce.toString();
 	}
 	
 	public String Dohvati_anketu (Ankete anketa) {
