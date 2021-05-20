@@ -34,6 +34,14 @@ public class Alati {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
+
+	public String getIme_autora() {
+		return ime_autora;
+	}
+
+	public void setIme_autora(String ime_autora) {
+		this.ime_autora = ime_autora;
+	}
 	
 	
 	

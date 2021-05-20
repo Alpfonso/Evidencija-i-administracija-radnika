@@ -15,20 +15,41 @@ public class Financijski_sektor extends Radnik {
 		// TODO Auto-generated constructor stub
 	}
 
-	//public String Dohvati_izvjesce () {
+	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce) {
 		
-		//TO-DO fetch reports
-		
-	//}
+		return izvjesce.toString();
+	}
 	
-	public String Dohvati_izvjesce_po_datumu (Financijska_izvjesca izvjesce, String nastavak, Date vremenski_period) throws SQLException{
+	
+	public String Dohvati_izvjesce_po_datumu (Financijska_izvjesca izvjesce, String nastavak, Date start, Date end) throws SQLException{
 		
 		DB_Connect db_object = new DB_Connect();
-		ResultSet rs = db_object.Fetch_table_data(""); //TO-DO fetch reports
+		ResultSet rs = db_object.Fetch_table_data("financijska_izvjesca", start, "vrijeme_pocetak AND vrijeme_kraj = " + end); //TO-DO fetch reports
+		
+		String naziv = new String();
+		String opis = new String();
+		String ime_autora = new String();
+		
+		int prihodi = 0;
+		int rashodi = 0;
+		
+		ResultSet rs2 = db_object.Fetch_table_data("zaposlenici", rs.getInt("autor"), "id");
 		
 		while (rs.next()) {
-			this.setIme(rs.getString("ime") + " " + rs.getString("prezime"));// fetches basic data from db to display
+
+			
+			naziv = rs.getString("ime");
+			opis = rs.getString("opis");
+			ime_autora = rs2.getString("ime ") + rs2.getString("prezime");
+			prihodi = rs.getInt("prihodi");
+			rashodi = rs.getInt("rashodi");
+			
 		}
-		return this.getIme();
+		
+	
+		Financijska_izvjesca val_izvjesce = new Financijska_izvjesca(naziv, opis, ime_autora, prihodi, rashodi, start, "format");
+		
+		return val_izvjesce.toString();
 	}
+	
 }

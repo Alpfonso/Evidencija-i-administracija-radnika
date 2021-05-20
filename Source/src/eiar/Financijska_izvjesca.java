@@ -44,5 +44,11 @@ public class Financijska_izvjesca extends Alati {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	public String toString () {
+		
+		return "naziv: " + this.getNaziv() + "\r\nopis: " + this.getOpis() + "\r\nime autora: " + this.getIme_autora() + "\r\nprihodi: " + this.prihodi + "\r\nrashodi: " + this.rashodi + "\r\ndatum: " + this.vremenski_period_izvjesca.toString();  
+	}
 	
 }
