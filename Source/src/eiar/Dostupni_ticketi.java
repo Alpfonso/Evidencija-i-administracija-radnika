@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.GridLayout;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.swing.BoxLayout;
 
 public class Dostupni_ticketi extends JFrame {
@@ -23,13 +26,15 @@ public class Dostupni_ticketi extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Dostupni_ticketi() {
+	public Dostupni_ticketi() throws SQLException{
+		DB_Connect db_object = new DB_Connect();
+		ResultSet dostupni_ticketi_rs = db_object.Fetch_table_data("zadaci");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
-		contentPane.setLayout(new GridLayout(0, 5, 0, 0));
+		contentPane.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		JLabel lblImeTicketa = new JLabel("Ime ticketa");
 		contentPane.add(lblImeTicketa);
@@ -40,12 +45,6 @@ public class Dostupni_ticketi extends JFrame {
 		JLabel lblRijesen = new JLabel("Rijesen");
 		contentPane.add(lblRijesen);
 		
-		JLabel label_2 = new JLabel("");
-		contentPane.add(label_2);
-		
-		JLabel label_3 = new JLabel("");
-		contentPane.add(label_3);
-		
 		JLabel lblIme = new JLabel("ime1");
 		contentPane.add(lblIme);
 		
@@ -55,19 +54,16 @@ public class Dostupni_ticketi extends JFrame {
 		JButton btnNewButton = new JButton("New button");
 		contentPane.add(btnNewButton);
 		
-		JLabel label_4 = new JLabel("");
-		contentPane.add(label_4);
-		
-		JLabel label_5 = new JLabel("");
-		contentPane.add(label_5);
-		
-		JLabel label_6 = new JLabel("");
-		contentPane.add(label_6);
-		
-		JLabel label = new JLabel("");
-		contentPane.add(label);
-		
-		JLabel label_1 = new JLabel("");
-		contentPane.add(label_1);
+		int row_count = 0;
+
+		while (dostupni_ticketi_rs.next()) {
+		    ++row_count;
+		    // Get data from the current row and use it
+		}
+		dostupni_ticketi_rs.beforeFirst();
+		JLabel[] label_array = new JLabel[row_count];
+		for(int i = 0; i < row_count; i++) {
+			label_array[i] = new JLabel("");
+		}
 	}
 }

@@ -20,7 +20,8 @@ public class Financijski_sektor extends Radnik {
 		return izvjesce.toString();
 	}
 	
-	public String Dohvati_izvjesce_po_datumu (Date start, Date end) throws SQLException {
+	
+	public String Dohvati_izvjesce_po_datumu (Financijska_izvjesca izvjesce, String nastavak, Date start, Date end) throws SQLException{
 		
 		DB_Connect db_object = new DB_Connect();
 		ResultSet rs = db_object.Fetch_table_data("financijska_izvjesca", start, "vrijeme_pocetak AND vrijeme_kraj = " + end); //TO-DO fetch reports
@@ -35,6 +36,7 @@ public class Financijski_sektor extends Radnik {
 		ResultSet rs2 = db_object.Fetch_table_data("zaposlenici", rs.getInt("autor"), "id");
 		
 		while (rs.next()) {
+
 			
 			naziv = rs.getString("ime");
 			opis = rs.getString("opis");
@@ -44,10 +46,10 @@ public class Financijski_sektor extends Radnik {
 			
 		}
 		
+	
+		Financijska_izvjesca val_izvjesce = new Financijska_izvjesca(naziv, opis, ime_autora, prihodi, rashodi, start, "format");
 		
-		Financijska_izvjesca izvjesce = new Financijska_izvjesca(naziv, opis, ime_autora, prihodi, rashodi, start, "format");
-		
-		return izvjesce.toString();
+		return val_izvjesce.toString();
 	}
 	
 }

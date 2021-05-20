@@ -54,6 +54,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 	/**
 	 * Launch the application.
 	 */
+	/*
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -67,7 +68,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 			}
 		});
 	}
-
+	 */
 	/**
 	 * Create the frame.
 	 */
