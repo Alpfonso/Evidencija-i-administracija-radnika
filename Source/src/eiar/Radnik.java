@@ -57,11 +57,20 @@ public class Radnik {
 		
 		return rs;
 	}
+	
+	public String Dohvati_izvjesce (Financijska_izvjesca izvjesce) {
+		
+		return izvjesce.toString();
+	}
+	
 	public String getIme() {
 		return ime;
 	}
+	
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
+	
+	
 	
 }
