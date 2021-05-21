@@ -76,5 +76,6 @@ public class Zadaci {
 	}
 	
 	//TODO implement the remaining necessary methods
+	
 
 }
