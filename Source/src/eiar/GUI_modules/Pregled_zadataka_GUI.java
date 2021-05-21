@@ -50,23 +50,6 @@ public class Pregled_zadataka_GUI extends JFrame {
 	private JTextField imeZadatka;
 
 	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Dodaj_radnika_GUI frame = new Dodaj_radnika_GUI();
-					frame.setVisible(true);
-					frame.setDefaultCloseOperation(HIDE_ON_CLOSE);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
 	 * Create the frame.
 	 * @throws SQLException 
 	 */
@@ -99,7 +82,7 @@ public class Pregled_zadataka_GUI extends JFrame {
 		scrollPane.setViewportView(opisZadatka);
 		
 		DB_Connect db_object = new DB_Connect();
-		ResultSet set_zadaci = db_object.Fetch_table_data("zadaci", 11, "zadano_zaposleniku");
+		ResultSet set_zadaci = db_object.Fetch_table_data("zadaci", zaposlenik_id, "zadano_zaposleniku");
 		while (set_zadaci.next()) {
 				imeZadatka.setText(set_zadaci.getString("ime"));
 				opisZadatka.setText(set_zadaci.getString("opis"));
@@ -111,11 +94,7 @@ public class Pregled_zadataka_GUI extends JFrame {
 				ResultSet set_zadaci = db_object.Fetch_table_data("zadaci", 11, "zadano_zaposleniku");
 				try {
 					while (set_zadaci.next()) {
-						System.out.println("Okay");
-						System.out.println(set_zadaci.getString("ime"));
-						System.out.println(zadaciSelect.getSelectedItem().toString());
 						if(set_zadaci.getString("ime").equals(zadaciSelect.getSelectedItem().toString())) {
-							System.out.print("Okay22");
 							imeZadatka.setText(set_zadaci.getString("ime"));
 							opisZadatka.setText(set_zadaci.getString("opis"));
 						}

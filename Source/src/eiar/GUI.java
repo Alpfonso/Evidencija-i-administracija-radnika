@@ -9,6 +9,7 @@ import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
 import eiar.GUI_modules.Dodaj_radnika_GUI;
+import eiar.GUI_modules.Izvjesce_GUI;
 import eiar.GUI_modules.Pregled_zadataka_GUI;
 
 import java.awt.BorderLayout;
@@ -135,6 +136,16 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	
 	    }
 	    else if (evt.getActionCommand() == Actions.FIN_IZVJESCA.name()) {
+	    	Izvjesce_GUI dr;
+			try {
+				dr = new Izvjesce_GUI(11);
+		    	dr.setVisible(true);
+		    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 	    }
 	    else if (evt.getActionCommand() == Actions.ANKETE.name()) {
 	    }
@@ -146,7 +157,6 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    else if (evt.getActionCommand() == Actions.SVI_ZADACI.name()) {
 	    	Pregled_zadataka_GUI dr;
 			try {
-				System.out.println("ok");
 				dr = new Pregled_zadataka_GUI(11);	// TODO umjesto broja neka se salje id trenutno ulogiranog radnika
 				dr.setVisible(true);
 		    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
