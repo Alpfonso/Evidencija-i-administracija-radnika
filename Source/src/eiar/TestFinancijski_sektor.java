@@ -21,6 +21,10 @@ public class TestFinancijski_sektor {
 		String s = "naziv: " + "project #1 chat room" + "\r\nopis: " + "opis" + "\r\nime autora: " + "Ime Autora" + "\r\nprihodi: " + 1000 + "\r\nrashodi: " + 800 + "\r\ndatum: " + datef.toString();  
 
 		assertEquals(s,fs.Dohvati_izvjesce(f1));
+		
 	}
+	
+
+	
 
 }
