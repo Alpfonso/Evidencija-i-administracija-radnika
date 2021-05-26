@@ -29,7 +29,7 @@ public class Main {
 		str[2] = new String("radno_vrijeme_start");
 		str[3] = new String("radno_vrijeme_end");
 		str[4] = new String("OIB");
-
+		
 		
 		Object[] arr = new Object[5];
 
