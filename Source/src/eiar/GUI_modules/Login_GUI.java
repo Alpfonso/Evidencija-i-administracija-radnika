@@ -6,17 +6,22 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import eiar.DB_Connect;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.ResultSet;
+
 import javax.swing.JLabel;
 
 public class Login_GUI extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField OIB;
 	private JTextField Username;
-	private JTextField Password;
 
 
 	/**
@@ -30,23 +35,37 @@ public class Login_GUI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		OIB = new JTextField();
+		OIB.setBounds(170, 104, 86, 20);
+		contentPane.add(OIB);
+		OIB.setColumns(10);
+		
 		Username = new JTextField();
-		Username.setBounds(170, 104, 86, 20);
+		Username.setBounds(170, 157, 86, 20);
 		contentPane.add(Username);
 		Username.setColumns(10);
-		
-		Password = new JTextField();
-		Password.setBounds(170, 157, 86, 20);
-		contentPane.add(Password);
-		Password.setColumns(10);
 		
 		JButton Submit = new JButton("Submit");
 		Submit.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				
-				//TO-DO add login form
+				String OIB_string = new String();
+				String Username_string = new String();
 				
+				OIB_string = OIB.getText();
+				Username_string = Username.getText();
+				
+				DB_Connect db_object = new DB_Connect();
+				ResultSet rs = db_object.Fetch_table_data("Radnik", OIB_string, "OIB" + " Ime = " + Username_string);
+				
+				if(rs != null) {
+					
+					setVisible(false);
+					dispose();
+					
+					// ADD RETURN STATEMENT
+				}
 			}
 		});
 		
