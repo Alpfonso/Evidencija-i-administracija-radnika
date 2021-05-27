@@ -49,14 +49,15 @@ public class Login_GUI extends JFrame {
 				
 			}
 		});
+		
 		Submit.setBounds(170, 205, 89, 23);
 		contentPane.add(Submit);
 		
-		JLabel lblNewLabel = new JLabel("Username:");
+		JLabel lblNewLabel = new JLabel("OIB:");
 		lblNewLabel.setBounds(93, 107, 67, 14);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Password:");
+		JLabel lblNewLabel_1 = new JLabel("Username:");
 		lblNewLabel_1.setBounds(93, 160, 67, 14);
 		contentPane.add(lblNewLabel_1);
 		
