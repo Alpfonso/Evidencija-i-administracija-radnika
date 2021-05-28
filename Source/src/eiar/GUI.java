@@ -14,6 +14,7 @@ import eiar.GUI_modules.Pregled_zadataka_GUI;
 import eiar.GUI_modules.Ticket_GUI;
 
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
 import javax.swing.JTable;
@@ -21,6 +22,8 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class GUI implements ActionListener{ //basic gui implementation
 
@@ -56,58 +59,74 @@ public class GUI implements ActionListener{ //basic gui implementation
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		tabbedPane.setBounds(10, 11, 347, 224);
+		frame.getContentPane().add(tabbedPane);
+		
+		JPanel panel_login = new JPanel();
+		tabbedPane.addTab("Prijava", null, panel_login, null);
+		panel_login.setLayout(null);
+
+		JPanel panel = new JPanel();
+		tabbedPane.addTab("Alati", null, panel, null);
+		panel.setLayout(null);
+		
+		for(Component x:panel.getComponents()) {
+			x.setVisible(false);
+		}
+		
 		JButton btnRijesen = new JButton("Rijesen");
-		btnRijesen.setBounds(129, 41, 109, 23);
-		frame.getContentPane().add(btnRijesen);
+		btnRijesen.setBounds(119, 30, 109, 23);
+		panel.add(btnRijesen);
 		btnRijesen.setActionCommand(Actions.RIJESEN.name());
-		btnRijesen.addActionListener(this);
 		
 		JButton btnOtvoriChat = new JButton("Otvori chat");
-		btnOtvoriChat.setBounds(10, 178, 109, 23);
-		frame.getContentPane().add(btnOtvoriChat);
+		btnOtvoriChat.setBounds(0, 167, 109, 23);
+		panel.add(btnOtvoriChat);
 		btnOtvoriChat.setActionCommand(Actions.OTVORI_CHAT.name());
-		btnOtvoriChat.addActionListener(this);
 		
 		JButton btnPrijaviTicket = new JButton("Prijavi ticket");
-		btnPrijaviTicket.setBounds(10, 73, 109, 23);
-		frame.getContentPane().add(btnPrijaviTicket);
+		btnPrijaviTicket.setBounds(0, 62, 109, 23);
+		panel.add(btnPrijaviTicket);
 		btnPrijaviTicket.setActionCommand(Actions.PRIJAVI_TICKET.name());
-		btnPrijaviTicket.addActionListener(this);
 		
 		JButton btnDostupniTicketi = new JButton("Dostupni ticketi");
-		btnDostupniTicketi.setBounds(129, 73, 109, 23);
-		frame.getContentPane().add(btnDostupniTicketi);
+		btnDostupniTicketi.setBounds(119, 62, 109, 23);
+		panel.add(btnDostupniTicketi);
 		btnDostupniTicketi.setActionCommand(Actions.DOSTUPNI_TICKETI.name());
-		btnDostupniTicketi.addActionListener(this);
 		
 		JButton btnFinIzvjesca = new JButton("Fin. izvjesca");
-		btnFinIzvjesca.setBounds(10, 110, 109, 23);
-		frame.getContentPane().add(btnFinIzvjesca);
+		btnFinIzvjesca.setBounds(0, 99, 109, 23);
+		panel.add(btnFinIzvjesca);
 		btnFinIzvjesca.setActionCommand(Actions.FIN_IZVJESCA.name());
-		btnFinIzvjesca.addActionListener(this);
 		
 		JButton btnDostupneAnkete = new JButton("Ankete");
-		btnDostupneAnkete.setBounds(10, 144, 109, 23);
-		frame.getContentPane().add(btnDostupneAnkete);
+		btnDostupneAnkete.setBounds(0, 133, 109, 23);
+		panel.add(btnDostupneAnkete);
 		btnDostupneAnkete.setActionCommand(Actions.ANKETE.name());
-		btnDostupneAnkete.addActionListener(this);
 		
 		JButton btnDodajRadnika = new JButton("Dodaj radnika");
-		btnDodajRadnika.setBounds(10, 212, 109, 23);
-		frame.getContentPane().add(btnDodajRadnika);
+		btnDodajRadnika.setBounds(0, 201, 109, 23);
+		panel.add(btnDodajRadnika);
 		btnDodajRadnika.setActionCommand(Actions.DODAJ_RADNIKA.name());
-		btnDodajRadnika.addActionListener(this);
 		
 		JButton btnPromjeniZadatak = new JButton("Svi zadaci");
-		btnPromjeniZadatak.setBounds(248, 41, 109, 23);
-		frame.getContentPane().add(btnPromjeniZadatak);
+		btnPromjeniZadatak.setBounds(238, 30, 109, 23);
+		panel.add(btnPromjeniZadatak);
 		btnPromjeniZadatak.setActionCommand(Actions.SVI_ZADACI.name());
-		btnPromjeniZadatak.addActionListener(this);
 		
 		
 		JLabel lblPlaceholderTrenutnoPrijavljen = new JLabel(ime);
-		lblPlaceholderTrenutnoPrijavljen.setBounds(10, 11, 109, 23);
-		frame.getContentPane().add(lblPlaceholderTrenutnoPrijavljen);
+		lblPlaceholderTrenutnoPrijavljen.setBounds(0, 0, 109, 23);
+		panel.add(lblPlaceholderTrenutnoPrijavljen);
+		btnPromjeniZadatak.addActionListener(this);
+		btnDodajRadnika.addActionListener(this);
+		btnDostupneAnkete.addActionListener(this);
+		btnFinIzvjesca.addActionListener(this);
+		btnDostupniTicketi.addActionListener(this);
+		btnPrijaviTicket.addActionListener(this);
+		btnOtvoriChat.addActionListener(this);
+		btnRijesen.addActionListener(this);
 		
 	
 		String ime_trenutnog_zadatka = new String();
@@ -117,9 +136,6 @@ public class GUI implements ActionListener{ //basic gui implementation
 		while (trenutni_zadatak_set.next()) {
 			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
 		}
-		JLabel lblPhTrenutniZadatak = new JLabel(ime_trenutnog_zadatka);
-		lblPhTrenutniZadatak.setBounds(10, 41, 109, 23);
-		frame.getContentPane().add(lblPhTrenutniZadatak);
 		
 		frame.setVisible(true);
 	}
