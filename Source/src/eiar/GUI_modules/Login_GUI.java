@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.JLabel;
 
@@ -26,8 +27,9 @@ public class Login_GUI extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @param zaposlenik_id 
 	 */
-	public Login_GUI() {
+	public int Login_GUI(int zaposlenik_id) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -45,29 +47,43 @@ public class Login_GUI extends JFrame {
 		contentPane.add(Username);
 		Username.setColumns(10);
 		
+		int login_ID;
+		
 		JButton Submit = new JButton("Submit");
 		Submit.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void mouseClicked(MouseEvent e)  {
 				
 				String OIB_string = new String();
 				String Username_string = new String();
 				
+				
 				OIB_string = OIB.getText();
 				Username_string = Username.getText();
+				
 				
 				DB_Connect db_object = new DB_Connect();
 				ResultSet rs = db_object.Fetch_table_data("Radnik", OIB_string, "OIB" + " Ime = " + Username_string);
 				
 				if(rs != null) {
 					
+					try {
+						login_ID = rs.getInt("ID");
+					} catch (SQLException e1) {
+						e1.printStackTrace();
+					}
+					
 					setVisible(false);
 					dispose();
-					
-					// ADD RETURN STATEMENT
 				}
 			}
 		});
+		
+		int Return_ID () {
+			
+			return null;
+		}
+		
 		
 		Submit.setBounds(170, 205, 89, 23);
 		contentPane.add(Submit);

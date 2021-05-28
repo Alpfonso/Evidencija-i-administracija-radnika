@@ -26,6 +26,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 
 	private JFrame frame;
 	private String ime = new String();
+	public int zaposlenik_id;
 	private enum Actions {
 		RIJESEN,
 		OTVORI_CHAT,
@@ -128,7 +129,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	System.out.println("rijesen");
 	    } 
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-	    	Login_GUI dr = new Login_GUI();
+	    	Login_GUI dr = new Login_GUI(zaposlenik_id);
 	    	dr.setVisible(true);
 	    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	    }
