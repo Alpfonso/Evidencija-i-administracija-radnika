@@ -75,7 +75,6 @@ public class Zadaci {
 		this.status = status;
 	}
 	
-	//TODO implement the remaining necessary methods
 	
 
 }

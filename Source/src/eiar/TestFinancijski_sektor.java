@@ -18,7 +18,7 @@ public class TestFinancijski_sektor {
 		Date datef = new Date(1,2,2012);
 		Financijska_izvjesca f1 = new Financijska_izvjesca("project #1 chat room","opis","Ime Autora",1000,800,datef,"format");
 
-		String s = "naziv: " + "project #1 chat room" + "\r\nopis: " + "opis" + "\r\nime autora: " + "Ime Autora" + "\r\nprihodi: " + 1000 + "\r\nrashodi: " + 800 + "\r\ndatum: " + datef.toString();  
+		String s = "naziv: " + "project #1 chat room" + "\r\nopis: " + "opis" + "\r\nime autora: " + "Ime Autora" + "\r\nprihodi: " + "1000.0" + "\r\nrashodi: " + "800.0" + "\r\ndatum: " + datef.toString();  
 
 		assertEquals(s,fs.Dohvati_izvjesce(f1));
 		
