@@ -10,7 +10,6 @@ import javax.swing.WindowConstants;
 
 import eiar.GUI_modules.Dodaj_radnika_GUI;
 import eiar.GUI_modules.Izvjesce_GUI;
-import eiar.GUI_modules.Login_GUI;
 import eiar.GUI_modules.Pregled_zadataka_GUI;
 import eiar.GUI_modules.Ticket_GUI;
 
@@ -130,9 +129,6 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	System.out.println("rijesen");
 	    } 
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-	    	Login_GUI dr = new Login_GUI(zaposlenik_id);
-	    	dr.setVisible(true);
-	    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	    }
 	    else if (evt.getActionCommand() == Actions.PRIJAVI_TICKET.name()) {
 	    	System.out.println("prijavi ticket");

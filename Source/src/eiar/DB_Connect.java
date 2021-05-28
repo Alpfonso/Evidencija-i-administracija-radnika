@@ -162,6 +162,7 @@ public class DB_Connect {
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
+			conn.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

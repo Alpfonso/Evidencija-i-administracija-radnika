@@ -127,9 +127,10 @@ public class Ticket_GUI extends JFrame {
 				String[] attributes = {"dodijeljeno"};
 				Object[] data = { zaposlenik_id };
 				System.out.println("PLEASE");
-				DB_Connect db_object = new DB_Connect();
+				
 				try {
-					db_object.Update_table_data(attributes , data , "ticketi" , Integer.parseInt(pregledZadataka.getSelectedItem().toString()));
+					DB_Connect conn = new DB_Connect();
+					conn.Update_table_data(attributes , data , "ticketi" , Integer.parseInt(pregledZadataka.getSelectedItem().toString()));
 				}
 				catch (Exception ex) {
 					System.out.println(ex);
