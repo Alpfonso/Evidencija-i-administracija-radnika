@@ -11,6 +11,7 @@ import javax.swing.WindowConstants;
 import eiar.GUI_modules.Dodaj_radnika_GUI;
 import eiar.GUI_modules.Izvjesce_GUI;
 import eiar.GUI_modules.Pregled_zadataka_GUI;
+import eiar.GUI_modules.Ticket_GUI;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -133,7 +134,9 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	System.out.println("prijavi ticket");
 	    }
 	    else if (evt.getActionCommand() == Actions.DOSTUPNI_TICKETI.name()) {
-	    	
+	    	Ticket_GUI dr = new Ticket_GUI(11);	
+	    	dr.setVisible(true);
+	    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	    }
 	    else if (evt.getActionCommand() == Actions.FIN_IZVJESCA.name()) {
 	    	Izvjesce_GUI dr;

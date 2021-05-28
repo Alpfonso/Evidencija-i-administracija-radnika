@@ -91,7 +91,7 @@ public class DB_Connect {
 	}
 	
 	public ResultSet Fetch_table_data(String table_name){
-		String sql = "SELECT * FROM '" + table_name + "'";
+		String sql = "SELECT * FROM " + table_name;
 		Connection conn = this.connect();
 		Statement stmt;
 		ResultSet rs = null;
@@ -148,16 +148,16 @@ public class DB_Connect {
 					str.append(", ");
 				}
 			}
-			System.out.println(str.toString());
+			
 		}
 		else {
 			System.out.println("Nesukladne kolicine podataka");	// In case of array missmatch print error
 		}
 		
-		String sql = "UPDATE '" + table_name + "' SET " + str.toString() + "WHERE id ='" + data_id + "'";	
-		
+		String sql = "UPDATE '" + table_name + "' SET " + str.toString() + " WHERE id = " + data_id;	
+		System.out.println(sql);
 		Connection conn = this.connect();
-		Statement stmt = null;
+		Statement stmt;
 		
 		try {
 			stmt = conn.createStatement();
@@ -167,5 +167,14 @@ public class DB_Connect {
 			e.printStackTrace();
 		}
 		
+	}
+	
+	public void close() {
+		try {
+			this.connect().close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
