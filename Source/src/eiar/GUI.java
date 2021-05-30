@@ -24,12 +24,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
+import java.awt.Font;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class GUI implements ActionListener{ //basic gui implementation
 
 	private JFrame frame;
 	private String ime = new String();
 	public int zaposlenik_id;
+	private JTextField OIB;
+	private JTextField lozinka;
 	private enum Actions {
 		RIJESEN,
 		OTVORI_CHAT,
@@ -55,25 +61,58 @@ public class GUI implements ActionListener{ //basic gui implementation
 
 	private void initialize() throws SQLException{//basic frame and components, subject to change
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(100, 100, 450, 400);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
-		tabbedPane.setBounds(10, 11, 347, 224);
+		tabbedPane.setBounds(10, 11, 348, 280);
 		frame.getContentPane().add(tabbedPane);
 		
 		JPanel panel_login = new JPanel();
 		tabbedPane.addTab("Prijava", null, panel_login, null);
 		panel_login.setLayout(null);
+		
+		JLabel lblNewLabel = new JLabel("OIB:");
+		lblNewLabel.setBounds(10, 47, 45, 13);
+		panel_login.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Prijava u sustav");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1.setBounds(10, 10, 323, 27);
+		panel_login.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Lozinka");
+		lblNewLabel_2.setBounds(10, 70, 45, 13);
+		panel_login.add(lblNewLabel_2);
+		
+		OIB = new JTextField();
+		OIB.setBounds(65, 44, 268, 16);
+		panel_login.add(OIB);
+		OIB.setColumns(10);
+		
+		lozinka = new JTextField();
+		lozinka.setBounds(65, 67, 268, 16);
+		panel_login.add(lozinka);
+		lozinka.setColumns(10);
+		
+		JButton prijava = new JButton("Prijavi se!");
+		
+		prijava.setBounds(10, 99, 323, 27);
+		panel_login.add(prijava);
+		
+		JLabel greska_label = new JLabel("* pogre\u0161no korisni\u010Dko ime ili lozinka");
+		greska_label.setForeground(Color.RED);
+		greska_label.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		greska_label.setBounds(10, 136, 323, 27);
+		panel_login.add(greska_label);
+		greska_label.setVisible(false);
 
 		JPanel panel = new JPanel();
 		tabbedPane.addTab("Alati", null, panel, null);
 		panel.setLayout(null);
 		
-		for(Component x:panel.getComponents()) {
-			x.setVisible(false);
-		}
+		tabbedPane.setEnabledAt(1, false);
 		
 		JButton btnRijesen = new JButton("Rijesen");
 		btnRijesen.setBounds(119, 30, 109, 23);
@@ -116,9 +155,9 @@ public class GUI implements ActionListener{ //basic gui implementation
 		btnPromjeniZadatak.setActionCommand(Actions.SVI_ZADACI.name());
 		
 		
-		JLabel lblPlaceholderTrenutnoPrijavljen = new JLabel(ime);
-		lblPlaceholderTrenutnoPrijavljen.setBounds(0, 0, 109, 23);
-		panel.add(lblPlaceholderTrenutnoPrijavljen);
+		JLabel trenutniKorisnik = new JLabel(ime);
+		trenutniKorisnik.setBounds(0, 0, 109, 23);
+		panel.add(trenutniKorisnik);
 		btnPromjeniZadatak.addActionListener(this);
 		btnDodajRadnika.addActionListener(this);
 		btnDostupneAnkete.addActionListener(this);
@@ -128,14 +167,37 @@ public class GUI implements ActionListener{ //basic gui implementation
 		btnOtvoriChat.addActionListener(this);
 		btnRijesen.addActionListener(this);
 		
+		prijava.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DB_Connect db_obj = new DB_Connect();
+				ResultSet rs = db_obj.Fetch_table_data("zaposlenici");
+				boolean passed = false;
+				try {
+					while(rs.next()) {
+						if(rs.getString("OIB").equals(OIB.getText()) && rs.getString("lozinka").equals(lozinka.getText())) {
+							tabbedPane.setEnabledAt(1, true);
+							passed = true;
+							greska_label.setVisible(false);
+							tabbedPane.setSelectedIndex(1);
+							DB_Connect db_object = new DB_Connect();
+							ResultSet trenutni_korisnik = db_object.Fetch_table_data("zaposlenici", OIB.getText(), "OIB");
+							while (trenutni_korisnik.next()) {
+								trenutniKorisnik.setText(trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime"));
+							}
+						}
+					}
+					if(!passed) {
+						greska_label.setVisible(true);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 	
-		String ime_trenutnog_zadatka = new String();
-		DB_Connect db_object = new DB_Connect();
-		int id_zadatka = 1;
-		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci");
-		while (trenutni_zadatak_set.next()) {
-			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
-		}
+		
 		
 		frame.setVisible(true);
 	}

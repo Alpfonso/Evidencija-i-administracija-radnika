@@ -154,7 +154,7 @@ public class DB_Connect {
 			System.out.println("Nesukladne kolicine podataka");	// In case of array missmatch print error
 		}
 		
-		String sql = "UPDATE '" + table_name + "' SET " + str.toString() + " WHERE id = " + data_id;	
+		String sql = "UPDATE " + table_name + " SET " + str.toString() + " WHERE id = " + data_id;	
 		System.out.println(sql);
 		Connection conn = this.connect();
 		Statement stmt;
@@ -162,7 +162,7 @@ public class DB_Connect {
 		try {
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-			conn.close();
+			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

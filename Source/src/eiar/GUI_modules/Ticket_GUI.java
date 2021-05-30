@@ -52,7 +52,6 @@ public class Ticket_GUI extends JFrame {
 		panelPregled.setLayout(null);
 		
 		JComboBox pregledZadataka = new JComboBox();
-
 		pregledZadataka.setBounds(10, 10, 200, 21);
 		panelPregled.add(pregledZadataka);
 		
@@ -82,55 +81,39 @@ public class Ticket_GUI extends JFrame {
 		lblNewLabel.setBounds(10, 37, 96, 21);
 		panelPregled.add(lblNewLabel);
 		
-		
 		imeTicketa = new JTextField();
 		imeTicketa.setEditable(false);
 		imeTicketa.setColumns(10);
 		imeTicketa.setBounds(10, 68, 94, 19);
 		panelPregled.add(imeTicketa);
-		
-		try {
-			
-			pregledOpis.setText(rs.getString("opis"));
-			
-			
-			imeZaposlenika = new JTextField();
-			imeZaposlenika.setEditable(false);
-			imeZaposlenika.setBounds(114, 38, 297, 19);
-			panelPregled.add(imeZaposlenika);
-			imeZaposlenika.setColumns(10);
-			
-			
-			
-			
-			imeTicketa.setText(rs.getString("ime"));
-			while(rs.next()) {
-				pregledZadataka.addItem(rs.getInt("id"));
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		imeZaposlenika = new JTextField();
+		imeZaposlenika.setEditable(false);
+		imeZaposlenika.setBounds(114, 38, 297, 19);
+		panelPregled.add(imeZaposlenika);
+		imeZaposlenika.setColumns(10);
 		
 		JButton prihvatiTicket = new JButton("Prihvati ticket");
 		prihvatiTicket.setBounds(10, 175, 94, 41);
 		panelPregled.add(prihvatiTicket);
 		
-		
-		
-		
+		try {	
+			pregledOpis.setText(rs.getString("opis"));
+			imeTicketa.setText(rs.getString("ime"));
+			while(rs.next()) {
+				pregledZadataka.addItem(rs.getInt("id"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		prihvatiTicket.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				String[] attributes = {"dodijeljeno"};
 				Object[] data = { zaposlenik_id };
-				System.out.println("PLEASE");
-				
 				try {
-					DB_Connect conn = new DB_Connect();
-					conn.Update_table_data(attributes , data , "ticketi" , Integer.parseInt(pregledZadataka.getSelectedItem().toString()));
+					db_object.Update_table_data(attributes, data, "ticketi", Integer.parseInt(pregledZadataka.getSelectedItem().toString()));
 				}
 				catch (Exception ex) {
 					System.out.println(ex);

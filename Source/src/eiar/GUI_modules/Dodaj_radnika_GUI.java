@@ -32,6 +32,7 @@ import com.toedter.calendar.JDayChooser;
 import com.toedter.calendar.JYearChooser;
 import com.toedter.calendar.JMonthChooser;
 import javax.swing.JLayeredPane;
+import java.awt.Color;
 
 /**
  * Serves as GUI for adding workers
@@ -50,6 +51,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 	private JTextField oibZaposlenika;
 	private JTextField obrazovanjeZaposlenika;
 	private JTextField razinaOvlastiZaposlenika;
+	private JTextField textField;
 
 	/**
 	 * Launch the application.
@@ -112,22 +114,22 @@ public class Dodaj_radnika_GUI extends JFrame {
 		lblime_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JLabel lblime_1_2_3 = new JLabel("email");
-		lblime_1_2_3.setBounds(0, 133, 45, 13);
+		lblime_1_2_3.setBounds(0, 162, 45, 13);
 		panel_2.add(lblime_1_2_3);
 		lblime_1_2_3.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		emailZaposlenika = new JTextField();
-		emailZaposlenika.setBounds(55, 130, 96, 19);
+		emailZaposlenika.setBounds(55, 159, 96, 19);
 		panel_2.add(emailZaposlenika);
 		emailZaposlenika.setColumns(10);
 		
 		JLabel lblime_1_2_4 = new JLabel("telefon");
-		lblime_1_2_4.setBounds(0, 159, 45, 13);
+		lblime_1_2_4.setBounds(0, 188, 45, 13);
 		panel_2.add(lblime_1_2_4);
 		lblime_1_2_4.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		telefonZaposlenika = new JTextField();
-		telefonZaposlenika.setBounds(55, 156, 96, 19);
+		telefonZaposlenika.setBounds(55, 185, 96, 19);
 		panel_2.add(telefonZaposlenika);
 		telefonZaposlenika.setColumns(10);
 		
@@ -157,17 +159,18 @@ public class Dodaj_radnika_GUI extends JFrame {
 		oibZaposlenika.setColumns(10);
 		
 		JLabel lblime_1_2_2 = new JLabel("OIB");
+		lblime_1_2_2.setForeground(Color.RED);
 		lblime_1_2_2.setBounds(0, 55, 45, 13);
 		panel_2.add(lblime_1_2_2);
 		lblime_1_2_2.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		JLabel lblime_1_2_5 = new JLabel("Obrazovanje");
-		lblime_1_2_5.setBounds(0, 81, 62, 14);
+		lblime_1_2_5.setBounds(0, 110, 62, 14);
 		panel_2.add(lblime_1_2_5);
 		lblime_1_2_5.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		
 		obrazovanjeZaposlenika = new JTextField();
-		obrazovanjeZaposlenika.setBounds(0, 101, 151, 19);
+		obrazovanjeZaposlenika.setBounds(0, 130, 151, 19);
 		panel_2.add(obrazovanjeZaposlenika);
 		obrazovanjeZaposlenika.setColumns(10);
 		
@@ -229,6 +232,17 @@ public class Dodaj_radnika_GUI extends JFrame {
 		endM.setModel(new SpinnerNumberModel(0, 0, 59, 1));
 		panel_1.add(endM);
 		
+		JLabel lozinka = new JLabel("Lozinka");
+		lozinka.setForeground(Color.RED);
+		lozinka.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lozinka.setBounds(0, 84, 45, 13);
+		panel_2.add(lozinka);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(55, 81, 96, 19);
+		panel_2.add(textField);
+		
 		JButton btnSubmit = new JButton("Unesi radnika");
 		btnSubmit.setBounds(171, 312, 206, 21);
 		contentPane.add(btnSubmit);
@@ -280,7 +294,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(imeZaposlenika.getText());
 				String[] attributes = {"ime","prezime","datum_rodenja","grad_stanovanja","ulica_i_broj","email",
-						"OIB","telefon","obrazovanje","radno_vrijeme_start","radno_vrijeme_end","slobodni_dani"};
+						"OIB","telefon","obrazovanje","radno_vrijeme_start","radno_vrijeme_end","slobodni_dani", "lozinka"};
 				int year = calendar.getYearChooser().getYear() - 1900;	
 				int month = calendar.getMonthChooser().getMonth();
 				int day = calendar.getDayChooser().getDay();
@@ -292,7 +306,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 						
 				Object[] data = {imeZaposlenika.getText(),prezimeZaposlenika.getText(), datum_rodenja, gradStanovanjaZaposlenika.getText(),
 						ulicaBrojZaposlenika.getText(), emailZaposlenika.getText(), oibZaposlenika.getText(), telefonZaposlenika.getText(),
-						obrazovanjeZaposlenika.getText(), start, end, 0};
+						obrazovanjeZaposlenika.getText(), start, end, 0, lozinka.getText()};
 				DB_Connect conn = new DB_Connect();
 				conn.Insert_table_data(attributes, data, "zaposlenici");
 				
