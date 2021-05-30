@@ -22,6 +22,11 @@ public class TestFinancijska_izvjesca {
 		f1.Promjeni_opis("opis2");
 		assertEquals("opis2",f1.getOpis());
 		
+		assertEquals(null,f1.getIzvjesce());
+		
+		String s = "naziv: " + "project #2 chat room" + "\r\nopis: " + "opis2" + "\r\nime autora: " + "Ime Autora" + "\r\nprihodi: " + "1000.0" + "\r\nrashodi: " + "800.0" + "\r\ndatum: " + date.toString();  
+
+		assertEquals(s,f1.toString());
 	}
 
 }
