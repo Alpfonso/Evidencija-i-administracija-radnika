@@ -31,6 +31,8 @@ public class Ticket_GUI extends JFrame {
 	private JPanel contentPane;
 	private JTextField imeZaposlenika;
 	private JTextField imeTicketa;
+	private JTextField unosIme;
+	private JTextField unosOpis;
 	/**
 	 * Create the frame.
 	 * @param zaposlenik_id 
@@ -70,11 +72,47 @@ public class Ticket_GUI extends JFrame {
 		
 		JPanel panelIzrada = new JPanel();
 		tabbedPane.addTab("Izrada", null, panelIzrada, null);
+		panelIzrada.setLayout(null);
+		
+		JLabel lblNewLabel_1 = new JLabel("Ime ticketa");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1.setBounds(10, 10, 60, 13);
+		panelIzrada.add(lblNewLabel_1);
+		
+		unosIme = new JTextField();
+		unosIme.setBounds(80, 7, 96, 19);
+		panelIzrada.add(unosIme);
+		unosIme.setColumns(10);
+		
+		JLabel lblNewLabel_1_1 = new JLabel("Opis ticketa");
+		lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1_1.setBounds(10, 39, 60, 13);
+		panelIzrada.add(lblNewLabel_1_1);
+		
+		unosOpis = new JTextField();
+		unosOpis.setColumns(10);
+		unosOpis.setBounds(80, 36, 331, 100);
+		panelIzrada.add(unosOpis);
+		
+		JLabel lblNewLabel_1_1_1 = new JLabel("Odabir zadatka");
+		lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblNewLabel_1_1_1.setBounds(10, 144, 96, 13);
+		panelIzrada.add(lblNewLabel_1_1_1);
+		
+		JComboBox zadatakIzrada = new JComboBox();
+		zadatakIzrada.setBounds(10, 168, 72, 26);
+		panelIzrada.add(zadatakIzrada);
+		
+		JButton spremiTicket = new JButton("Spremi");
+		
+		spremiTicket.setBounds(315, 168, 96, 26);
+		panelIzrada.add(spremiTicket);
 		
 		DB_Connect db_object = new DB_Connect();
 		
 		ResultSet rs = db_object.Fetch_table_data("ticketi WHERE zadatak IN "
 				+ "(SELECT id FROM zadaci WHERE zadano_zaposleniku = "+ zaposlenik_id +")");
+		
 		
 		JLabel lblNewLabel = new JLabel("Dodijeljeni radnik:");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -106,7 +144,30 @@ public class Ticket_GUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		rs = db_object.Fetch_table_data("zadaci", zaposlenik_id , "zadano_zaposleniku");
+		
+		try {
+			while(rs.next()) {
+				zadatakIzrada.addItem(rs.getInt("id"));
+			}
+		} catch (SQLException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
+		
 		db_object.close();
+		
+		spremiTicket.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				DB_Connect db_object = new DB_Connect();
+				String[] attributes = {"ime", "opis", "prijavio", "zadatak"};		
+				Object[] data = { unosIme.getText(), unosOpis.getText(), zaposlenik_id, Integer.parseInt(zadatakIzrada.getSelectedItem().toString()) };
+				db_object.Insert_table_data(attributes, data, "ticketi");
+			}
+		});
+		
 		prihvatiTicket.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
