@@ -35,7 +35,7 @@ public class TestPodredeni {
 
 		p1.zavrsi_zadatak(z1);
 		
-		assertEquals(null,p1.provjera_zadataka());
+		assertEquals(0,p1.provjera_zadataka());
 		
 	}
 
