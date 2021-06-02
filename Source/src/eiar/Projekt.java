@@ -101,6 +101,12 @@ public class Projekt {
 	public void setIzvjesce(String izvjesce) {
 		this.izvjesce = izvjesce;
 	}
+
+	public int getId() {
+		return id;
+	}
+
+
 	
 }
 

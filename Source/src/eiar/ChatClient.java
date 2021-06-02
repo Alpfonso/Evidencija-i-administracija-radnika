@@ -2,15 +2,18 @@ package eiar;
 
 import java.net.*;
 import java.io.*;
+import eiar.GUI_modules.*;
  
 public class ChatClient {
     private String hostname;
     private int port;
     private String userName;
+    private Chat_GUI chatClient;
  
-    public ChatClient(String hostname, int port) {
+    public ChatClient(String hostname, int port, Chat_GUI chatClient) {
         this.hostname = hostname;
         this.port = port;
+        this.chatClient = chatClient;
     }
  
     public void execute() {
@@ -19,8 +22,8 @@ public class ChatClient {
  
             System.out.println("Connected to the chat server");
  
-            new ReadThread(socket, this).start();
-            new WriteThread(socket, this).start();
+            new ReadThread(socket, this, chatClient).start();
+            new WriteThread(socket, this, chatClient).start();
  
         } catch (UnknownHostException ex) {
             System.out.println("Server not found: " + ex.getMessage());
@@ -36,16 +39,5 @@ public class ChatClient {
  
     String getUserName() {
         return this.userName;
-    }
- 
- 
-    public static void main(String[] args) {
-        if (args.length < 2) return;
- 
-        String hostname = args[0];
-        int port = Integer.parseInt(args[1]);
- 
-        ChatClient client = new ChatClient(hostname, port);
-        client.execute();
     }
 }

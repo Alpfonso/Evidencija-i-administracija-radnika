@@ -8,11 +8,13 @@ import javax.swing.JFrame;
 import javax.swing.JTextPane;
 import javax.swing.WindowConstants;
 
+
+import eiar.GUI_modules.*;
+
 import eiar.GUI_modules.Dodaj_radnika_GUI;
 import eiar.GUI_modules.Izvjesce_GUI;
 import eiar.GUI_modules.Pregled_zadataka_GUI;
 import eiar.GUI_modules.Ticket_GUI;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -46,7 +48,8 @@ public class GUI implements ActionListener{ //basic gui implementation
 		DODAJ_RADNIKA,
 		SVI_ZADACI,
 		IME,
-		TRENUTNI_ZADATAK
+		TRENUTNI_ZADATAK,
+		POKRENI_CHAT_SERVER
 	}
 	public GUI() throws SQLException{
 		initialize();
@@ -112,10 +115,18 @@ public class GUI implements ActionListener{ //basic gui implementation
 		panel.add(btnRijesen);
 		btnRijesen.setActionCommand(Actions.RIJESEN.name());
 		
+
+		JButton btnChatServer = new JButton("Pokreni Chat server");
+		btnChatServer.setBounds(119, 167, 109, 23);
+		panel.add(btnChatServer);
+		btnChatServer.setActionCommand(Actions.POKRENI_CHAT_SERVER.name());
+		btnChatServer.addActionListener(this);
+
 		JButton btnOtvoriChat = new JButton("Otvori chat");
 		btnOtvoriChat.setBounds(0, 167, 109, 23);
 		panel.add(btnOtvoriChat);
 		btnOtvoriChat.setActionCommand(Actions.OTVORI_CHAT.name());
+
 		
 		JButton btnPrijaviTicket = new JButton("Prijavi ticket");
 		btnPrijaviTicket.setBounds(0, 62, 109, 23);
@@ -192,7 +203,16 @@ public class GUI implements ActionListener{ //basic gui implementation
 			}
 		});
 	
-		
+
+		String ime_trenutnog_zadatka = new String();
+		DB_Connect db_object = new DB_Connect();
+		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci");
+		while (trenutni_zadatak_set.next()) {
+			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
+		}
+		JLabel lblPhTrenutniZadatak = new JLabel(ime_trenutnog_zadatka);
+		lblPhTrenutniZadatak.setBounds(10, 41, 109, 23);
+		frame.getContentPane().add(lblPhTrenutniZadatak);
 		
 		frame.setVisible(true);
 	}
@@ -201,8 +221,31 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	
 	    	System.out.println("rijesen");
 	    } 
+
+	    else if (evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name() || evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
+	    	Chat_GUI chatClient = new Chat_GUI();
+	    	chatClient.setVisible(true);
+	    	chatClient.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	    
+	    	if(evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name()) {
+	    		int port = 8989;
+	   		 
+		    	ChatServer server = new ChatServer(port, chatClient);
+		    	server.execute();
+				
+	    	}
+	    	if(evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
+	    	    String hostname = new String("localhost");
+		        int port = 8989;
+		        
+		        ChatClient client = new ChatClient(hostname, port, chatClient);
+		        client.execute();
+	    	}
+
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
+
 	    }
+
 	    else if (evt.getActionCommand() == Actions.PRIJAVI_TICKET.name()) {
 	    	System.out.println("prijavi ticket");
 	    }
@@ -243,4 +286,5 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	
 	    }
 	  }
+	}
 }

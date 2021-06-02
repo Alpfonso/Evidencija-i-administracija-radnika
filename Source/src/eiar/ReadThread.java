@@ -2,15 +2,18 @@ package eiar;
 
 import java.io.*;
 import java.net.*;
+import eiar.GUI_modules.*;
  
 public class ReadThread extends Thread {
     private BufferedReader reader;
     private Socket socket;
     private ChatClient client;
+    private Chat_GUI chatClient;
  
-    public ReadThread(Socket socket, ChatClient client) {
+    public ReadThread(Socket socket, ChatClient client, Chat_GUI chatClient) {
         this.socket = socket;
         this.client = client;
+        this.chatClient = chatClient;
  
         try { //try to read input, if it fails print error message
             InputStream input = socket.getInputStream();
