@@ -3,26 +3,17 @@ package eiar;
 import java.io.*;
 import java.net.*;
 import java.util.*;
+import eiar.GUI_modules.*;
 
 public class ChatServer {
     private int port;
     private Set<String> userNames = new HashSet<>(); //Set is used because it doesn't allow duplicates & the order is irrelevant
     private Set<UserThread> userThreads = new HashSet<>();
+    private Chat_GUI chatClient;
  
-    public ChatServer(int port) {
+    public ChatServer(int port, Chat_GUI chatClient) {
         this.port = port;
-    }
-    
-    public static void main(String[] args) {
-        if (args.length < 1) {
-            System.out.println("Syntax: java ChatServer <port-number>");
-            System.exit(0);
-        }
- 
-        int port = Integer.parseInt(args[0]);
- 
-        ChatServer server = new ChatServer(port);
-        server.execute();
+        this.chatClient = chatClient;
     }
  
     public void execute() {
@@ -34,7 +25,7 @@ public class ChatServer {
                 Socket socket = serverSocket.accept(); 
                 System.out.println("New user connected"); //successfully connected to port
  
-                UserThread newUser = new UserThread(socket, this);
+                UserThread newUser = new UserThread(socket, this, chatClient);
                 userThreads.add(newUser);
                 newUser.start();
  

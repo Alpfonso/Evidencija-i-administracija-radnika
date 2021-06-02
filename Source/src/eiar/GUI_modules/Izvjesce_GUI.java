@@ -20,7 +20,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.Map;
 
-import net.miginfocom.swing.MigLayout;
+//import net.miginfocom.swing.MigLayout;
 import javax.swing.JTextPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;

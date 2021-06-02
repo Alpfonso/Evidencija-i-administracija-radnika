@@ -8,6 +8,7 @@ public class Main {
 
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) throws SQLException {
+		System.out.println("check");
 		GUI prozor = new GUI();
 		
 		DB_Connect db_object = new DB_Connect();
@@ -29,7 +30,7 @@ public class Main {
 		str[2] = new String("radno_vrijeme_start");
 		str[3] = new String("radno_vrijeme_end");
 		str[4] = new String("OIB");
-
+		
 		
 		Object[] arr = new Object[5];
 
@@ -38,6 +39,7 @@ public class Main {
 		arr[2] = new Time(14,45,22);
 		arr[3] = new Time(14,30,59);
 		arr[4] = new String("515380085");
+		
 		
 		//db_object.Update_table_data(str, arr, "zaposlenici", 11);
 		//db_object.Insert_table_data(str, arr, "zaposlenici", 11);

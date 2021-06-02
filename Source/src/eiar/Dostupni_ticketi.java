@@ -63,7 +63,8 @@ public class Dostupni_ticketi extends JFrame {
 		dostupni_ticketi_rs.beforeFirst();
 		JLabel[] label_array = new JLabel[row_count];
 		for(int i = 0; i < row_count; i++) {
-			label_array[i] = new JLabel("");
+			//String prijavio = new String(dostupni_ticketi_rs.getString());
+			label_array[i] = new JLabel();
 		}
 	}
 }
