@@ -106,20 +106,22 @@ public class Ticket_GUI extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+		db_object.close();
 		prihvatiTicket.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String[] attributes = {"dodijeljeno"};
+				DB_Connect db_object = new DB_Connect();
+				String[] attributes = {"ime"};
 				Object[] data = { zaposlenik_id };
+				int x = Integer.parseInt(pregledZadataka.getSelectedItem().toString());
 				try {
-					db_object.Update_table_data(attributes, data, "ticketi", Integer.parseInt(pregledZadataka.getSelectedItem().toString()));
+					db_object.Update_table_data(attributes, data, "ticketi", x);
 				}
 				catch (Exception ex) {
 					System.out.println(ex);
 					// TODO: handle exception
 				}
-		
+				db_object.close();
 			}
 		});
 		

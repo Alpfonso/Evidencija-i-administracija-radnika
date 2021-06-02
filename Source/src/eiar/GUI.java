@@ -49,13 +49,6 @@ public class GUI implements ActionListener{ //basic gui implementation
 		TRENUTNI_ZADATAK
 	}
 	public GUI() throws SQLException{
-		DB_Connect db_object = new DB_Connect();
-		
-		ResultSet rs = db_object.Fetch_table_data("zaposlenici", 11, "id");//rs variable saves the whole line that the sql querry returns, and needs to parse in in the method below
-		
-		while (rs.next()) {
-			ime = rs.getString("ime") + " " + rs.getString("prezime");// fetches basic data from db to display
-		}
 		initialize();
 	}
 
@@ -185,6 +178,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 							while (trenutni_korisnik.next()) {
 								trenutniKorisnik.setText(trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime"));
 							}
+							db_object.close();
 						}
 					}
 					if(!passed) {
@@ -194,6 +188,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
+				db_obj.close();
 			}
 		});
 	

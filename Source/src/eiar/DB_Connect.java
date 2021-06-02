@@ -157,15 +157,24 @@ public class DB_Connect {
 		String sql = "UPDATE " + table_name + " SET " + str.toString() + " WHERE id = " + data_id;	
 		System.out.println(sql);
 		Connection conn = this.connect();
-		Statement stmt;
+		
 		
 		try {
+			Statement stmt;
 			stmt = conn.createStatement();
 			stmt.executeUpdate(sql);
-			conn.commit();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			try {
+				if(conn != null) {
+					conn.close();
+					System.out.println(conn);
+				}
+			} catch (SQLException e) {
+				System.out.println(e);
+			}
 		}
 		
 	}
