@@ -1,5 +1,6 @@
 package eiar;
 
+import java.sql.SQLException;
 import java.util.Date;
 /**
  * Used to create superiors<br>
@@ -31,8 +32,9 @@ public class Nadredeni extends Radnik implements Postavi_radnika {
 	 * @param radnik worker who gets the task
 	 * @param projekt which project is the task part of
 	 * @param ime_zadatka task name
+	 * @throws SQLException 
 	 */
-	public void zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) {
+	public void zadaj_zadatak(Podredeni radnik, Projekt projekt, String ime_zadatka) throws SQLException {
 		//Create task
 		Zadaci zadatak = new Zadaci(radnik, projekt, ime_zadatka);
 	}

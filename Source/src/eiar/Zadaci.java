@@ -6,7 +6,7 @@ import java.sql.SQLException;
 /**
  * Tasks class
  */
-public class Zadaci {
+public class Zadaci{
 	private int id;
 	private String ime = new String();
 	private Radnik zadano_radniku;
