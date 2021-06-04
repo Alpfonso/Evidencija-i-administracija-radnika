@@ -82,7 +82,7 @@ public class Pregled_zadataka_GUI extends JFrame {
 		scrollPane.setViewportView(opisZadatka);
 		
 		DB_Connect db_object = new DB_Connect();
-		ResultSet set_zadaci = db_object.Fetch_table_data("zadaci", zaposlenik_id, "zadano_zaposleniku");
+		ResultSet set_zadaci = db_object.Fetch_table_data("zadaci" + " where zadano_zaposleniku = " + zaposlenik_id + " AND status = 'true'");
 		while (set_zadaci.next()) {
 				imeZadatka.setText(set_zadaci.getString("ime"));
 				opisZadatka.setText(set_zadaci.getString("opis"));
@@ -91,7 +91,7 @@ public class Pregled_zadataka_GUI extends JFrame {
 		
 		zadaciSelect.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent arg0) {
-				ResultSet set_zadaci = db_object.Fetch_table_data("zadaci", 11, "zadano_zaposleniku");
+				ResultSet set_zadaci = db_object.Fetch_table_data("zadaci" + " where zadano_zaposleniku = " + zaposlenik_id + " AND status = 'true'");
 				try {
 					while (set_zadaci.next()) {
 						if(set_zadaci.getString("ime").equals(zadaciSelect.getSelectedItem().toString())) {

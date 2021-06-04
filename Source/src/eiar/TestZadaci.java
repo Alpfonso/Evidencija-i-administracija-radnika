@@ -28,7 +28,7 @@ public class TestZadaci {
 
 		Projekt p1 = new Projekt("Marko",n1,datum_pocetak,datum_kraj);
 		
-		
+		/*
 		Zadaci z1 = new Zadaci(r1,p1,"task name");
 		
 		assertEquals("task name",z1.getIme());
@@ -37,7 +37,7 @@ public class TestZadaci {
 		
 		
 		z1.setIzvjesce("izvjesce");
-		assertEquals("izvjesce",z1.getIzvjesce());
+		assertEquals("izvjesce",z1.getIzvjesce());*/
 	}
 
 }
