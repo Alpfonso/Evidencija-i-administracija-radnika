@@ -6,11 +6,11 @@ import java.sql.SQLException;
 /**
  * Tasks class
  */
-public class Zadaci {
+public class Zadaci{
 	private int id;
 	private String ime = new String();
-	private Radnik zadano_radniku;
-	private Projekt projekt;
+	private int zadano_radniku;
+	private int projekt;
 	private boolean status;
 	private String izvjesce;
 	/**
@@ -19,7 +19,7 @@ public class Zadaci {
 	 * @param projekt project name who's child is the constructed task
 	 * @param ime task name
 	 */
-	public Zadaci(Radnik radnik, Projekt projekt, String ime) throws SQLException{
+	public Zadaci(int radnik, int projekt, String ime) throws SQLException{
 		this.zadano_radniku = radnik;
 		this.projekt = projekt;
 		this.ime = ime;
@@ -28,24 +28,33 @@ public class Zadaci {
 
 		//TODO add data to database and get auto increment id
 	}
-	public Zadaci(Projekt projekt) throws SQLException{//constructor that only assigns this task to the given project
+	public Zadaci(int projekt) throws SQLException{//constructor that only assigns this task to the given project
 		this.projekt = projekt;
 		this.addToDB();
 }
-	public Zadaci(Projekt projekt, String opis) throws SQLException{//constructor that assigns this task to the project and gives it a description
+	public Zadaci(int projekt, String opis) throws SQLException{//constructor that assigns this task to the project and gives it a description
 		this.projekt = projekt;
 		this.ime = opis;
 		this.addToDB();
 	}
 	
+	public Zadaci(int id, boolean a) throws SQLException{
+		DB_Connect db_object = new DB_Connect();
+		ResultSet rs = db_object.Fetch_table_data("zadaci", id, "id");
+		this.ime = rs.getString("ime");
+		this.zadano_radniku = rs.getInt("zadano_zaposleniku");
+		this.projekt = rs.getInt("projekt");
+		this.status = rs.getBoolean("status");
+	}
+	
 	private void addToDB() throws SQLException{
 		DB_Connect db_object = new DB_Connect();
 		String[] attributes = {"ime", "zadano_zaposleniku", "projekt", "opis", "status"};
-		Object[] data = {this.ime, this.zadano_radniku.getId(), this.projekt.getId(), this.izvjesce, this.status};
+		Object[] data = {this.ime, this.zadano_radniku, this.projekt, this.izvjesce, this.status};
 		db_object.Insert_table_data(attributes, data, "zadaci");
 	}
 	
-	public void Dodaj_radnika(Radnik radnik) {
+	public void Dodaj_radnika(int radnik) {
 		this.zadano_radniku = radnik;
 		this.updateDB(0);
 	}
@@ -90,16 +99,16 @@ public class Zadaci {
 	public void setIme(String ime) {
 		this.ime = ime;
 	}
-	public Radnik getZadano_radniku() {
+	public int getZadano_radniku() {
 		return zadano_radniku;
 	}
-	public void setZadano_radniku(Radnik zadano_radniku) {
+	public void setZadano_radniku(int zadano_radniku) {
 		this.zadano_radniku = zadano_radniku;
 	}
-	public Projekt getProjekt() {
+	public int getProjekt() {
 		return projekt;
 	}
-	public void setProjekt(Projekt projekt) {
+	public void setProjekt(int projekt) {
 		this.projekt = projekt;
 	}
 	public String getIzvjesce() {

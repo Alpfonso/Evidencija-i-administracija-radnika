@@ -45,7 +45,8 @@ public class GUI implements ActionListener{ //basic gui implementation
 		SVI_ZADACI,
 		IME,
 		TRENUTNI_ZADATAK,
-		POKRENI_CHAT_SERVER
+		POKRENI_CHAT_SERVER,
+		DODAJ_ZADATAK
 	}
 	public GUI() throws SQLException{
 		initialize();
@@ -154,10 +155,24 @@ public class GUI implements ActionListener{ //basic gui implementation
 		panel.add(btnPromjeniZadatak);
 		btnPromjeniZadatak.setActionCommand(Actions.SVI_ZADACI.name());
 		
+		JButton btnNoviZadatak = new JButton("Dodaj zadatak");
+		btnNoviZadatak.setBounds(238, 62, 109, 23);
+		panel.add(btnNoviZadatak);
+		btnNoviZadatak.setActionCommand(Actions.DODAJ_ZADATAK.name());
+		
+		String ime_trenutnog_zadatka = new String();
+		DB_Connect db_object = new DB_Connect();
+		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci");
+		while (trenutni_zadatak_set.next()) {
+			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
+		}
 		
 		JLabel trenutniKorisnik = new JLabel(ime);
-		trenutniKorisnik.setBounds(0, 0, 109, 23);
+		trenutniKorisnik.setBounds(0, 11, 109, 23);
 		panel.add(trenutniKorisnik);
+		JLabel lblPhTrenutniZadatak = new JLabel(ime_trenutnog_zadatka);
+		lblPhTrenutniZadatak.setBounds(0, 30, 109, 23);
+		panel.add(lblPhTrenutniZadatak);
 		btnPromjeniZadatak.addActionListener(this);
 		btnDodajRadnika.addActionListener(this);
 		btnDostupneAnkete.addActionListener(this);
@@ -166,6 +181,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 		btnPrijaviTicket.addActionListener(this);
 		btnOtvoriChat.addActionListener(this);
 		btnRijesen.addActionListener(this);
+		btnNoviZadatak.addActionListener(this);
 		
 		prijava.addMouseListener(new MouseAdapter() {
 			@Override
@@ -202,25 +218,31 @@ public class GUI implements ActionListener{ //basic gui implementation
 		});
 	
 
-		String ime_trenutnog_zadatka = new String();
-		DB_Connect db_object = new DB_Connect();
-		ResultSet trenutni_zadatak_set = db_object.Fetch_table_data("zadaci");
-		while (trenutni_zadatak_set.next()) {
-			ime_trenutnog_zadatka = trenutni_zadatak_set.getString("ime");
-		}
-		JLabel lblPhTrenutniZadatak = new JLabel(ime_trenutnog_zadatka);
-		lblPhTrenutniZadatak.setBounds(10, 41, 109, 23);
-		frame.getContentPane().add(lblPhTrenutniZadatak);
 		
 		frame.setVisible(true);
 	}
-	public void actionPerformed(ActionEvent evt) {//Actions for each button press
+	public void actionPerformed(ActionEvent evt){//Actions for each button press
 	    if (evt.getActionCommand() == Actions.RIJESEN.name()) {
+	    	try {
+				DB_Connect db_object = new DB_Connect();
+				ResultSet rs = db_object.Fetch_table_data("zadaci" + " where zadano_zaposleniku = " + zaposlenik_id + " AND status = 'true'");
+				Zadaci trenutni_zadatak = new Zadaci(rs.getInt("id"), true);
+				trenutni_zadatak.Zavrsi();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    	
-	    	System.out.println("rijesen");
 	    } 
+	    else if (evt.getActionCommand() == Actions.DODAJ_ZADATAK.name()) {
+ 	    	Dodaj_zadatak_GUI dz;
+ 	    	dz = new Dodaj_zadatak_GUI();
+ 			dz.setVisible(true);
+ 			dz.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	 	}
 
 	    else if (evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name() || evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
+<<<<<<< HEAD
 	    	String args[] = {"239.0.0.0", "1234"};
 	    	Client c = new Client();
 	    	c.main(args);
@@ -228,8 +250,27 @@ public class GUI implements ActionListener{ //basic gui implementation
 
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
 
+=======
+	    	Chat_GUI chatClient = new Chat_GUI();
+	    	chatClient.setVisible(true);
+	    	chatClient.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+	    
+	    	if(evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name()) {
+	    		int port = 8989;
+	   		 
+		    	ChatServer server = new ChatServer(port, chatClient);
+		    	server.execute();
+				
+	    	}
+	    	if(evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
+	    	    String hostname = new String("localhost");
+		        int port = 8989;
+		        
+		        ChatClient client = new ChatClient(hostname, port, chatClient);
+		        client.execute();
+	    	}
+>>>>>>> 585978ef8bde0e5f39de8ae4ca8f2392ca333ce1
 	    }
-
 	    else if (evt.getActionCommand() == Actions.PRIJAVI_TICKET.name()) {
 	    	System.out.println("prijavi ticket");
 	    }
@@ -264,11 +305,15 @@ public class GUI implements ActionListener{ //basic gui implementation
 				dr.setVisible(true);
 		    	dr.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}	
 	    	
 	    }
+	 
 	  }
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 585978ef8bde0e5f39de8ae4ca8f2392ca333ce1
 }
 
