@@ -11,10 +11,6 @@ import javax.swing.WindowConstants;
 
 import eiar.GUI_modules.*;
 
-import eiar.GUI_modules.Dodaj_radnika_GUI;
-import eiar.GUI_modules.Izvjesce_GUI;
-import eiar.GUI_modules.Pregled_zadataka_GUI;
-import eiar.GUI_modules.Ticket_GUI;
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -188,6 +184,8 @@ public class GUI implements ActionListener{ //basic gui implementation
 							ResultSet trenutni_korisnik = db_object.Fetch_table_data("zaposlenici", OIB.getText(), "OIB");
 							while (trenutni_korisnik.next()) {
 								trenutniKorisnik.setText(trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime"));
+								zaposlenik_id = trenutni_korisnik.getInt("id");
+								ime = trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime");
 							}
 							db_object.close();
 						}
@@ -223,24 +221,10 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    } 
 
 	    else if (evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name() || evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-	    	Chat_GUI chatClient = new Chat_GUI();
-	    	chatClient.setVisible(true);
-	    	chatClient.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	    
-	    	if(evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name()) {
-	    		int port = 8989;
-	   		 
-		    	ChatServer server = new ChatServer(port, chatClient);
-		    	server.execute();
-				
-	    	}
-	    	if(evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-	    	    String hostname = new String("localhost");
-		        int port = 8989;
-		        
-		        ChatClient client = new ChatClient(hostname, port, chatClient);
-		        client.execute();
-	    	}
+	    	String args[] = {"239.0.0.0", "1234"};
+	    	Client c = new Client();
+	    	c.main(args);
+	    }
 
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
 
@@ -286,5 +270,5 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    	
 	    }
 	  }
-	}
 }
+
