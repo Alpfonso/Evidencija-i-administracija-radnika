@@ -3,9 +3,11 @@ package eiar;
 import java.awt.EventQueue;
 import java.sql.*;
 import java.time.LocalDate;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JFrame;
 import javax.swing.JTextPane;
+import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
 
@@ -240,39 +242,26 @@ public class GUI implements ActionListener{ //basic gui implementation
  			dz.setVisible(true);
  			dz.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	 	}
-
-	    else if (evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name() || evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-<<<<<<< HEAD
-	    	String args[] = {"239.0.0.0", "1234"};
-	    	Client c = new Client();
-	    	c.main(args);
+	    else if (evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name()) {
+	    	
 	    }
-
 	    else if (evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-
-=======
-	    	Chat_GUI chatClient = new Chat_GUI();
-	    	chatClient.setVisible(true);
-	    	chatClient.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-	    
-	    	if(evt.getActionCommand() == Actions.POKRENI_CHAT_SERVER.name()) {
-	    		int port = 8989;
-	   		 
-		    	ChatServer server = new ChatServer(port, chatClient);
-		    	server.execute();
-				
-	    	}
-	    	if(evt.getActionCommand() == Actions.OTVORI_CHAT.name()) {
-	    	    String hostname = new String("localhost");
-		        int port = 8989;
-		        
-		        ChatClient client = new ChatClient(hostname, port, chatClient);
-		        client.execute();
-	    	}
->>>>>>> 585978ef8bde0e5f39de8ae4ca8f2392ca333ce1
+	        SwingUtilities.invokeLater(new Runnable(){
+	            public void run() {
+	            	Chat_GUI chat_gui_obj = new Chat_GUI("ok");
+	            	String args[] = {"239.0.0.0", "1234"};
+	    	    	Client c = new Client(chat_gui_obj, args, ime);
+	            }
+	        });
+	    	//Chat_GUI chat_gui_obj = new Chat_GUI("ok");
+	    	//String args[] = {"239.0.0.0", "1234"};
+	    	//Client c = new Client(chat_gui_obj, args);
 	    }
+
 	    else if (evt.getActionCommand() == Actions.PRIJAVI_TICKET.name()) {
-	    	System.out.println("prijavi ticket");
+	    	Chat_GUI i = new Chat_GUI("ok");
+	    	i.setVisible(true);
+	    	
 	    }
 	    else if (evt.getActionCommand() == Actions.DOSTUPNI_TICKETI.name()) {
 	    	Ticket_GUI dr = new Ticket_GUI(11);	
@@ -311,9 +300,6 @@ public class GUI implements ActionListener{ //basic gui implementation
 	    }
 	 
 	  }
-<<<<<<< HEAD
-=======
-	
->>>>>>> 585978ef8bde0e5f39de8ae4ca8f2392ca333ce1
+
 }
 
