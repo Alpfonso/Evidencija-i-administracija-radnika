@@ -33,6 +33,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 
 	private JFrame frame;
 	private String ime = new String();
+	
 	public int zaposlenik_id;
 	private JTextField OIB;
 	private JTextField lozinka;
@@ -115,11 +116,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 		btnRijesen.setActionCommand(Actions.RIJESEN.name());
 		
 
-		JButton btnChatServer = new JButton("Pokreni Chat server");
-		btnChatServer.setBounds(119, 167, 109, 23);
-		panel.add(btnChatServer);
-		btnChatServer.setActionCommand(Actions.POKRENI_CHAT_SERVER.name());
-		btnChatServer.addActionListener(this);
+
 
 		JButton btnOtvoriChat = new JButton("Otvori chat");
 		btnOtvoriChat.setBounds(0, 167, 109, 23);
@@ -188,6 +185,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 		prijava.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				String ovlasti = "placeholder";
 				DB_Connect db_obj = new DB_Connect();
 				ResultSet rs = db_obj.Fetch_table_data("zaposlenici");
 				boolean passed = false;
@@ -204,6 +202,7 @@ public class GUI implements ActionListener{ //basic gui implementation
 								trenutniKorisnik.setText(trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime"));
 								zaposlenik_id = trenutni_korisnik.getInt("id");
 								ime = trenutni_korisnik.getString("ime") + " " + trenutni_korisnik.getString("prezime");
+								ovlasti = trenutni_korisnik.getString("razina_ovlasti");
 							}
 							db_object.close();
 						}
@@ -216,10 +215,21 @@ public class GUI implements ActionListener{ //basic gui implementation
 					e1.printStackTrace();
 				}
 				db_obj.close();
+				if(!(ovlasti.equals("Vlasnik") || ovlasti.equals("Administrator"))) {
+					btnDodajRadnika.setVisible(false);
+				}
+				if(!(ovlasti.equals("Vlasnik") || ovlasti.equals("Financije"))) {
+					btnFinIzvjesca.setVisible(false);
+				}
+				if(!(ovlasti.equals("Vlasnik") || ovlasti.equals("HR"))) {
+					btnDostupneAnkete.setVisible(false);
+				}
+				if(!(ovlasti.equals("Vlasnik") || ovlasti.equals("Nadredeni"))) {
+					btnNoviZadatak.setVisible(false);
+				}
 			}
 		});
-	
-
+		
 		
 		frame.setVisible(true);
 	}
