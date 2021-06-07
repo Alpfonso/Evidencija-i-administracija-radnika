@@ -41,10 +41,15 @@ public class Zadaci{
 	public Zadaci(int id, boolean a) throws SQLException{
 		DB_Connect db_object = new DB_Connect();
 		ResultSet rs = db_object.Fetch_table_data("zadaci", id, "id");
-		this.ime = rs.getString("ime");
-		this.zadano_radniku = rs.getInt("zadano_zaposleniku");
-		this.projekt = rs.getInt("projekt");
-		this.status = rs.getBoolean("status");
+		this.id = id;
+		while(rs.next()){
+			this.ime = rs.getString("ime");
+			this.zadano_radniku = rs.getInt("zadano_zaposleniku");
+			this.projekt = rs.getInt("projekt");
+			this.status = rs.getBoolean("status");
+			
+		}
+		
 	}
 	
 	private void addToDB() throws SQLException{
@@ -74,22 +79,27 @@ public class Zadaci{
 	}
 	
 	private void updateDB(int mode) {
-		DB_Connect db_object = new DB_Connect();
-		String[] attributes = new String[5];
-		Object[] data = new String[5];
-		switch(mode) {
-			case 0:
-				attributes[0] = "ime";
-				data[0] = this.ime;
-				db_object.Update_table_data(attributes, data, "zadaci", this.id);
-			case 1:
-				attributes[0] = "opis";
-				data[0] = this.izvjesce;
-				db_object.Update_table_data(attributes, data, "zadaci", this.id);
-			case 2:
-				attributes[0] = "Status";
-				data[0] = this.status;
-				db_object.Update_table_data(attributes, data, "zadaci", this.id);
+		try {
+			DB_Connect db_object = new DB_Connect();
+			String[] attributes = new String[1];
+			Object[] data = new String[1];
+			switch(mode) {
+				case 0:
+					attributes[0] = "ime";
+					data[0] = this.ime;
+					db_object.Update_table_data(attributes, data, "zadaci", this.id);
+				case 1:
+					attributes[0] = "opis";
+					data[0] = this.izvjesce;
+					db_object.Update_table_data(attributes, data, "zadaci", this.id);
+				case 2:
+					attributes[0] = "Status";
+					data[0] = "false";
+					db_object.Update_table_data(attributes, data, "zadaci", this.id);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

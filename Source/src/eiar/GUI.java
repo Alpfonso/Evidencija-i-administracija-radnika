@@ -215,6 +215,10 @@ public class GUI implements ActionListener{ //basic gui implementation
 					e1.printStackTrace();
 				}
 				db_obj.close();
+				btnDodajRadnika.setVisible(true);
+				btnFinIzvjesca.setVisible(true);					
+				btnDostupneAnkete.setVisible(true);
+				btnNoviZadatak.setVisible(true);
 				if(!(ovlasti.equals("Vlasnik") || ovlasti.equals("Administrator"))) {
 					btnDodajRadnika.setVisible(false);
 				}

@@ -281,7 +281,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 			public void mouseClicked(MouseEvent e) {
 				System.out.println(imeZaposlenika.getText());
 				String[] attributes = {"ime","prezime","datum_rodenja","grad_stanovanja","ulica_i_broj","email",
-						"OIB","telefon","obrazovanje","radno_vrijeme_start","radno_vrijeme_end","slobodni_dani", "lozinka"};
+						"OIB","telefon","obrazovanje","radno_vrijeme_start","radno_vrijeme_end","slobodni_dani", "lozinka", "razina_ovlasti"};
 				int year = calendar.getYearChooser().getYear() - 1900;	
 				int month = calendar.getMonthChooser().getMonth();
 				int day = calendar.getDayChooser().getDay();
@@ -293,7 +293,7 @@ public class Dodaj_radnika_GUI extends JFrame {
 						
 				Object[] data = {imeZaposlenika.getText(),prezimeZaposlenika.getText(), datum_rodenja, gradStanovanjaZaposlenika.getText(),
 						ulicaBrojZaposlenika.getText(), emailZaposlenika.getText(), oibZaposlenika.getText(), telefonZaposlenika.getText(),
-						obrazovanjeZaposlenika.getText(), start, end, 0, lozinka.getText()};
+						obrazovanjeZaposlenika.getText(), start, end, 0, lozinka.getText(), razinaOvlastiZaposlenika.getText()};
 				DB_Connect conn = new DB_Connect();
 				conn.Insert_table_data(attributes, data, "zaposlenici");
 				
